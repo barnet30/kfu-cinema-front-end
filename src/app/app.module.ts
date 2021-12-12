@@ -13,6 +13,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HomeComponent } from './components/home/home.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { environment } from '../environments/environment';
+import {CINEMA_API_URL} from './app-injection-token'
+import {JwtModule} from '@auth0/angular-jwt'
+import { ACCESS_TOKEN_KEY } from './services/account.service';
+
+export function tokenGetter(){
+  return localStorage.getItem(ACCESS_TOKEN_KEY)
+}
 
 @NgModule({
   declarations: [
@@ -30,9 +38,19 @@ import { MoviesComponent } from './components/movies/movies.component';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatFormFieldModule    
+    MatFormFieldModule,
+    
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains : environment.allowedDomains
+      }
+    })
   ],
-  providers: [],
+  providers: [{
+    provide: CINEMA_API_URL,
+    useValue: environment.cinemaApi
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

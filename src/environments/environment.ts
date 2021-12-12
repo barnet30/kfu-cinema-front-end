@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  cinemaApi: 'http://localhost:44351/'
+  cinemaApi: 'http://localhost:44351/',
+  allowedDomains: ['localhost:44351']
 };
 
 /*
