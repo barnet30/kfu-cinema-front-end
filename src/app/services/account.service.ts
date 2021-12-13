@@ -14,6 +14,8 @@ export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 })
 export class AccountService {
 
+  private token = null;
+
   constructor(
     private http: HttpClient,
     @Inject(CINEMA_API_URL) private apiUrl : string,
@@ -25,7 +27,21 @@ export class AccountService {
     return this.http.post<Token>(`${this.apiUrl}api/account/login`, {
       username, password
     }).pipe(
-      tap(token => localStorage.setItem(ACCESS_TOKEN_KEY, token.access_token))
+      tap(token => {
+        localStorage.setItem(ACCESS_TOKEN_KEY, token.token)
+        this.setToken(token.token);
+      })
+    )
+  }
+
+  register(username: string, password: string, email: string) : Observable<Token>{
+    return this.http.post<Token>(`${this.apiUrl}api/account/register`, {
+      username, password, email
+    }).pipe(
+      tap(token => {
+        localStorage.setItem(ACCESS_TOKEN_KEY, token.token)
+        this.setToken(token.token);
+      })
     )
   }
 
@@ -36,6 +52,15 @@ export class AccountService {
 
   logout(): void{
     localStorage.removeItem(ACCESS_TOKEN_KEY);
+    this.token = null;
     this.router.navigate(['']);
+  }
+
+  setToken(token: string){
+    this.token = token;
+  }
+
+  getToken(): string {
+    return this.token;
   }
 }
