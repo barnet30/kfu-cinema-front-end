@@ -11,17 +11,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { MoviesComponent } from './components/movies/movies.component';
 import { environment } from '../environments/environment';
-import {CINEMA_API_URL} from './app-injection-token'
+import {CINEMA_API_URL} from './app-injection-tokens'
 import {JwtModule} from '@auth0/angular-jwt'
 import { ACCESS_TOKEN_KEY } from './services/account.service';
-import { TokenInterceptor } from './shared/token.interceptor';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegistrationPageComponent } from './registration-page/registration-page.component';
-import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
-import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
 
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY)
@@ -30,11 +27,9 @@ export function tokenGetter(){
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent,
     LoginPageComponent,
     RegistrationPageComponent,
-    AuthLayoutComponent,
-    SiteLayoutComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,10 +55,6 @@ export function tokenGetter(){
   providers: [{
     provide: CINEMA_API_URL,
     useValue: environment.cinemaApi
-  },{
-    provide: HTTP_INTERCEPTORS,
-    multi: true,
-    useClass: TokenInterceptor
   }],
   bootstrap: [AppComponent]
 })

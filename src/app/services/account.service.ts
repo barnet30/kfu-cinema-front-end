@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {CINEMA_API_URL} from '../app-injection-token'
+import {CINEMA_API_URL} from '../app-injection-tokens'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { Token } from '../models/token';

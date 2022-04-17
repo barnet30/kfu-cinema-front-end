@@ -1,15 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card">
+<form [formGroup]="form" (ngSubmit)="signUp()" class="card">
     <div class="card-content">
-        <span class="card-title">Войти в систему</span>
+        <span class="card-title">Регистрация</span>
         <div class="input-field">
             <input
             formControlName="username"
-             id="email" 
+             id="username" 
              type="email" 
              >
-            <label for="email">Username:</label>
+            <label for="username">Логин:</label>
             <span *ngIf="form.get('username').invalid && form.get('username').touched" class="helper-text red-text">
-                <span *ngIf="form.get('username').errors['required']">Username не должен быть пустым</span>
+                <span *ngIf="form.get('username').errors['required']">Логин не должен быть пустым</span>
             </span>
         </div>
         <div class="input-field">
@@ -28,13 +28,25 @@
                 </span>
               </span>
         </div>
+        <div class="input-field">
+            <input
+            formControlName="email"
+             id="email" 
+             type="email" 
+             >
+            <label for="email">Email:</label>
+            <span *ngIf="form.get('email').invalid && form.get('email').touched" class="helper-text red-text">
+                <span *ngIf="form.get('email').errors['required']">Email не должен быть пустым</span>
+                <span *ngIf="form.get('email').errors['email']">Некоректный email</span>
+            </span>
+        </div>
     </div>
     <div class="card-action">
         <button 
         type="submit"
         class="modal-action btn waves-effect"
         [disabled]="form.invalid">
-        Войти
+        Зарегистрироваться
         </button>
     </div>
 </form>
