@@ -20,6 +20,7 @@ import { RegistrationPageComponent } from './components/registration-page/regist
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 
+
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY)
 }

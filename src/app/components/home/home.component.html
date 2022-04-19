@@ -1,10 +1,15 @@
-<div class="list-group">
-    <a *ngFor="let movie of movies['items']" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{movie.name}}</h5>
-    <small>{{movie.year}}</small>
-    </div>
-    <p class="mb-1">{{movie.description}}</p>
-    <small>{{movie.country}}</small>
-    </a>
+<div *ngFor="let movie of movies['items']">
+  <mat-card class="movie-item-card">
+    <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="Photo of a Shiba Inu">
+    <mat-card-content class="movie-item-conent">
+      <mat-card-title>{{movie.name}}</mat-card-title>
+      <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
+        <mat-card-subtitle>
+          <p style="display: inline;" *ngFor="let genre of movie.genres">
+            {{genre.name}}<a style="color: gray;" *ngIf="genre!=movie.genres[movie.genres.length - 1]">,</a>
+          </p> 
+        </mat-card-subtitle>
+      <p>{{movie.description}}</p>
+    </mat-card-content>
+  </mat-card>
 </div>
