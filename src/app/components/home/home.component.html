@@ -1,4 +1,12 @@
-<div *ngFor="let movie of movies['items']">
+<aside>
+  <mat-card class="filter-card">
+    <mat-card-title class="filter-card-title">
+      <img src="assets/icons/icon-sort-settings.svg" class="svg-filter">
+      Фильтр
+    </mat-card-title>
+  </mat-card>
+</aside>
+<div style="margin-top: 70px;" *ngFor="let movie of movies['items']">
   <mat-card class="movie-item-card">
     <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="Photo of a Shiba Inu">
     <mat-card-content class="movie-item-conent">

@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper grey darken-1">
+    <div class="nav-wrapper darken-1">
         <a routerLink="/" class="brand-logo">kfu cinema simulator</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li *ngIf="!isLoggedIn" routerLinkActive="active">
@@ -14,7 +14,6 @@
         </ul>
     </div>
 </nav>
+<router-outlet></router-outlet>
 
-<div class="auth-block">
-    <router-outlet></router-outlet>
-</div>
+
