@@ -1,0 +1,74 @@
+.movie-item-card {
+    max-width: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    float: left;
+    margin-left: 13%;
+  }
+
+.movie-item-conent{
+    justify-content: space-between;
+    margin-left: 30px;
+}
+
+.movie-item-image {
+    width: 230px;
+    height: 280px;
+}
+
+
+aside {
+    width: 33%;
+    float: right;
+ }
+
+ .filter-card{
+    background-color: rgb(52,58,64);
+    max-width: 240px;
+    margin-top: 70px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+ }
+
+ .filter-card-title{
+     color: white;
+     padding-left: 10px;
+ }
+
+  .svg-filter{
+     width: 23px;
+     height: 23px;
+     margin-right: 5px;
+     margin-left: 5px;
+     color: white;
+ }
+
+ .filter-container{
+    padding-top: 20px;
+    padding-left: 15px;
+    background-color: white;
+ }
+
+ .filter-field-label {
+    display:flex; 
+     font-size: 18px;
+     color: rgb(52,58,64);
+     margin-left: 20px;
+ }
+
+ .filter-container .mat-form-field{
+    margin-left: 20px;
+    height: auto;
+    width: 180px;
+  }
+
+.filter-card-input{
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      height: auto;
+      width: 70%;
+      margin-left: 15px;
+  }

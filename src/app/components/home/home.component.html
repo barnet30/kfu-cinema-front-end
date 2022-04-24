@@ -1,0 +1,49 @@
+<aside>
+  <mat-card class="filter-card">
+    <mat-card-title class="filter-card-title">
+      <img src="assets/icons/icon-sort-settings.svg" class="svg-filter">
+      Фильтр
+    </mat-card-title>
+    <form [formGroup]="form" class="filter-container"> 
+      <label class="filter-field-label">Год выхода</label>
+      <div class="input-field">
+        <input class="filter-card-input" placeholder="Начало">
+        <input class="filter-card-input" placeholder="Конец">
+      </div>
+      <label class="filter-field-label">Название фильма</label>
+      <div class="input-field">
+        <input class="filter-card-input" placeholder="Название...">
+      </div>
+      <mat-label class="filter-field-label">Страна</mat-label>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="selectedCountry">
+          <mat-option *ngFor="let country of countries" [value]="country.id">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-label class="filter-field-label">Жанры</mat-label>
+        <ng-multiselect-dropdown
+          [placeholder]="'custom placeholder'"
+          [settings]="genresDropdownSettings"
+          [data]="genres"
+          [(ngModel)]="selectedGenres">
+        </ng-multiselect-dropdown>
+    </form>
+  </mat-card>
+</aside>
+<div style="margin-top: 70px;" *ngFor="let movie of movies['items']">
+  <mat-card class="movie-item-card">
+    <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="Photo of a Shiba Inu">
+    <mat-card-content class="movie-item-conent">
+      <mat-card-title>{{movie.name}}</mat-card-title>
+      <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
+        <mat-card-subtitle>
+          <p style="display: inline;" *ngFor="let genre of movie.genres">
+            {{genre.name}}<a style="color: gray;" *ngIf="genre!=movie.genres[movie.genres.length - 1]">,</a>
+          </p> 
+        </mat-card-subtitle>
+      <p>{{movie.description}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
