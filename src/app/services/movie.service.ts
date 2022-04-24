@@ -6,6 +6,8 @@ import { CINEMA_API_URL } from '../app-injection-tokens';
 import { Observable } from 'rxjs';
 import { Page } from '../common/table.types';
 import { MovieItem } from '../models/movieItem';
+import { CountryRef } from '../models/countryRef';
+import { Genre } from '../models/genre';
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 
@@ -23,5 +25,13 @@ export class MovieService {
 
   getMovies(): Observable<Page<MovieItem>>{
     return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{});
+  }
+
+  getCounties(): Observable<CountryRef[]>{
+    return this.http.get<CountryRef[]>(`${this.apiUrl}api/refbook/countries`,{});
+  }
+
+  getGenres(): Observable<Genre[]>{
+    return this.http.get<Genre[]>(`${this.apiUrl}api/cinema/genres`,{});
   }
 }

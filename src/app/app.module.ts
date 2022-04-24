@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { environment } from '../environments/environment';
 import {CINEMA_API_URL} from './app-injection-tokens'
 import {JwtModule} from '@auth0/angular-jwt'
@@ -45,6 +47,8 @@ export function tokenGetter(){
     MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
+    MatSelectModule,
+    NgMultiSelectDropDownModule.forRoot(),
     
     JwtModule.forRoot({
       config: {

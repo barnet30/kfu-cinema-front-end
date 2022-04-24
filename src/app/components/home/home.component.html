@@ -4,6 +4,32 @@
       <img src="assets/icons/icon-sort-settings.svg" class="svg-filter">
       Фильтр
     </mat-card-title>
+    <form [formGroup]="form" class="filter-container"> 
+      <label class="filter-field-label">Год выхода</label>
+      <div class="input-field">
+        <input class="filter-card-input" placeholder="Начало">
+        <input class="filter-card-input" placeholder="Конец">
+      </div>
+      <label class="filter-field-label">Название фильма</label>
+      <div class="input-field">
+        <input class="filter-card-input" placeholder="Название...">
+      </div>
+      <mat-label class="filter-field-label">Страна</mat-label>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="selectedCountry">
+          <mat-option *ngFor="let country of countries" [value]="country.id">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-label class="filter-field-label">Жанры</mat-label>
+        <ng-multiselect-dropdown
+          [placeholder]="'custom placeholder'"
+          [settings]="genresDropdownSettings"
+          [data]="genres"
+          [(ngModel)]="selectedGenres">
+        </ng-multiselect-dropdown>
+    </form>
   </mat-card>
 </aside>
 <div style="margin-top: 70px;" *ngFor="let movie of movies['items']">
