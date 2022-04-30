@@ -3,9 +3,10 @@ import { AccountService } from 'src/app/services/account.service';
 import { MovieService } from '../../services/movie.service';
 import { Page } from '../../common/table.types';
 import { MovieItem } from '../../models/movieItem';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { CountryRef } from '../../models/countryRef';
 import { Genre } from 'src/app/models/genre';
+import { MovieFilterParameters } from '../../models/movieFilterParameters';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,13 @@ import { Genre } from 'src/app/models/genre';
 })
 export class HomeComponent implements OnInit {
 
-  public movies: Page<MovieItem>
-  public countries: CountryRef[]
-  public genres: Genre[]
-  genresDropdownSettings = {};
-  selectedGenres = [];
-  form: FormGroup
-  selectedCountry: string
+  public movies: Page<MovieItem>;
+  public countries: CountryRef[];
+  public genresList: Genre[];
+  genres = new FormControl();
+  filterForm: FormGroup;
+  selectedCountry: string;
+  movieFilter = new MovieFilterParameters(null,null,null,null,null);
 
   constructor(private auth: AccountService,
               private movieService: MovieService){ }
@@ -29,31 +30,21 @@ export class HomeComponent implements OnInit {
     this.getAllMovies();
     this.getCountriesRef();
     this.getAllGenres();
-    this.form = new FormGroup({
+    this.filterForm = new FormGroup({
       yearFrom: new FormControl(null),
       yearTo: new FormControl(null),
-      dateTo: new FormControl(null),
+      countryId: new FormControl(null),
       name: new FormControl(null),
       genres: new FormControl(null)
     });
-
-    this.genresDropdownSettings= {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
   }
 
   public get isLoggedIn(): boolean{
     return this.auth.isAunthenticated();
   }
 
-  getAllMovies(){
-    this.movieService.getMovies().subscribe(res=>{
+ getAllMovies(){
+    this.movieService.getMovies(this.movieFilter).subscribe(res=>{
       this.movies = res;
     });
   }
@@ -66,7 +57,19 @@ export class HomeComponent implements OnInit {
 
   getAllGenres(){
     this.movieService.getGenres().subscribe(res=>{
-      this.genres=res;
+      this.genresList = res;
+    });
+  }
+
+  applyFilters(){
+    this.movieFilter.countryId = this.filterForm.value.countryId ? Number(this.filterForm.value.countryId) : null;
+    this.movieFilter.yearFrom = this.filterForm.value.yearFrom ? Number(this.filterForm.value.yearFrom) : null;
+    this.movieFilter.yearTo = this.filterForm.value.yearTo ? Number(this.filterForm.value.yearTo) : null;
+    this.movieFilter.name = this.filterForm.value.name;
+    this.movieFilter.genres = this.filterForm.value.genres;
+    
+    this.movieService.getMovies(this.movieFilter).subscribe(res=>{
+      this.movies = res;
     });
   }
 }

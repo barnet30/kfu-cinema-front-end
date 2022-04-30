@@ -1,1 +1,17 @@
-<p>movie works!</p>
+<p>{{this.movie.name}}</p>
+<p>{{this.movie.movieUrl}}</p>
+<div style="max-width: 500px;">
+    <script>
+        const player = new Plyr('video', {captions: {active: true}});
+        window.player = player;
+    </script>
+	<video width="400px" height="500px" id="player" controls crossorigin playsinline>
+        <source src="{{this.movie.movieUrl}}.mp4" type='video/mp4'>
+        <source src="{{this.movie.movieUrl}}.ogv" type='video/ogv'>
+        <source src="{{this.movie.movieUrl}}.webm" type='video/webm'>
+
+		<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576"> -->
+		<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720"> -->
+		<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080"> -->
+	</video>
+</div>
