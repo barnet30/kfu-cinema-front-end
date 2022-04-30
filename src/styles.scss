@@ -13,3 +13,28 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Border */
+.mat-form-field {
+    color: #ccc;
+    padding: 3px;
+    margin-bottom: 10px;
+  }
+
+  .mat-form-field-appearance-outlin .mat-label {
+      color: black;
+  }
+  /* Font color */
+  input.mat-input-element {
+    color: black;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.sticky {
+  position: sticky;
+  z-index:99999999;        
+  top: 0;
+  width: 100%;
+}

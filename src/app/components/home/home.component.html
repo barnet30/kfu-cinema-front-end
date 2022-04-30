@@ -4,37 +4,40 @@
       <img src="assets/icons/icon-sort-settings.svg" class="svg-filter">
       Фильтр
     </mat-card-title>
-    <form [formGroup]="form" class="filter-container"> 
+    <form [formGroup]="filterForm" class="filter-container"> 
       <label class="filter-field-label">Год выхода</label>
       <div class="input-field">
-        <input class="filter-card-input" placeholder="Начало">
-        <input class="filter-card-input" placeholder="Конец">
+        <input formControlName="yearFrom" class="filter-card-input" placeholder="Начало">
+        <input formControlName="yearTo" class="filter-card-input" placeholder="Конец">
       </div>
       <label class="filter-field-label">Название фильма</label>
       <div class="input-field">
-        <input class="filter-card-input" placeholder="Название...">
+        <input formControlName="name" class="filter-card-input" placeholder="Название...">
       </div>
-      <mat-label class="filter-field-label">Страна</mat-label>
-      <mat-form-field appearance="outline">
-        <mat-select [(ngModel)]="selectedCountry">
+      <label class="filter-field-label">Страна</label>
+      <mat-form-field floatLabel="never">
+        <mat-select formControlName="countryId" placeholder="Выберите страну">
+          <mat-option></mat-option>
           <mat-option *ngFor="let country of countries" [value]="country.id">
             {{country.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-label class="filter-field-label">Жанры</mat-label>
-        <ng-multiselect-dropdown
-          [placeholder]="'custom placeholder'"
-          [settings]="genresDropdownSettings"
-          [data]="genres"
-          [(ngModel)]="selectedGenres">
-        </ng-multiselect-dropdown>
+      <mat-form-field floatLabel="never">
+        <mat-select formControlName="genres" [formControl]="genres" multiple placeholder="Выберите жанры">
+          <mat-option *ngFor="let genre of genresList" [value]="genre.id">{{genre.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button (click)="applyFilters()" mat-raised-button class="filter-apply-btn">Применить</button>
     </form>
   </mat-card>
 </aside>
+
+
 <div style="margin-top: 70px;" *ngFor="let movie of movies['items']">
   <mat-card class="movie-item-card">
-    <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="Photo of a Shiba Inu">
+    <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}" [routerLink]="['movie', movie.id]">
     <mat-card-content class="movie-item-conent">
       <mat-card-title>{{movie.name}}</mat-card-title>
       <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
