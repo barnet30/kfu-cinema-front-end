@@ -1,17 +1,69 @@
-<p>{{this.movie.name}}</p>
-<p>{{this.movie.movieUrl}}</p>
-<div style="max-width: 500px;">
-    <script>
-        const player = new Plyr('video', {captions: {active: true}});
-        window.player = player;
-    </script>
-	<video width="400px" height="500px" id="player" controls crossorigin playsinline>
-        <source src="{{this.movie.movieUrl}}.mp4" type='video/mp4'>
-        <source src="{{this.movie.movieUrl}}.ogv" type='video/ogv'>
-        <source src="{{this.movie.movieUrl}}.webm" type='video/webm'>
+<div style="align-items: center;">
+  <mat-card class="movie-detail">
+    <!-- <mat-card-title> -->
+      <div class="card-top">
+        <img src="{{this.movie.imageUrl}}" class="movie-detail-image">
 
-		<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576"> -->
-		<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720"> -->
-		<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080"> -->
-	</video>
+        <div class="card-top-right">
+          <h1>{{this.movie.name}}</h1>
+          <br>
+          <ul>
+            <li>
+              <span>Год:</span>
+              <span>{{this.movie.year}}</span>
+            </li>
+            <li>
+              <span>Страна:</span>
+              <span>{{this.movie.country}}</span>
+            </li>
+            <li>
+              <span>Жанры:</span>
+              <span>
+                <p style="display: inline;" *ngFor="let genre of movie.genres">
+                  {{genre.name}}<a style="color: black;" *ngIf="genre!=movie.genres[movie.genres.length - 1]">,</a>
+                </p> 
+              </span>
+            </li>
+            <li>
+              <span>Режиссер:</span>
+              <span>{{this.movie.director.name}} {{this.movie.director.lastName}}</span>
+            </li>
+            <li>
+              <span>Актеры:</span>
+              <span>
+                <p style="display: inline;" *ngFor="let actor of movieActors">
+                  {{actor.name}} {{actor.lastName}}<a style="color: black;" *ngIf="actor!=movieActors[movieActors.length - 1]">,</a>
+                </p> 
+              </span>
+            </li>
+            <li>
+              <span>Описание:</span>
+              <span>{{this.movie.description}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      
+   <mat-card-content>
+    <div class="movie-player">
+      <vm-player>
+        <vm-video>
+          <source data-src="{{this.movie.movieUrl}}.mp4" type="video/mp4" />
+        </vm-video>
+        <vm-default-ui>
+        </vm-default-ui>
+      </vm-player>
+  </div>
+   </mat-card-content>   
+  </mat-card>
 </div>
+
+
+
+<!-- <div style="max-width: 40%; height: auto;">
+    <vm-player>
+        <vm-youtube cookies="true" video-id="ye-ypP8f5ik">
+        </vm-youtube>
+    </vm-player>
+</div> -->

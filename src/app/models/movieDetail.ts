@@ -1,3 +1,7 @@
+import { Genre } from "./genre";
+import { DirectorDetail } from './directorDetail';
+import { ActorDetail } from './actorDetail';
+
 export class MovieDetail{
     constructor(
         public id: number,
@@ -9,5 +13,8 @@ export class MovieDetail{
         public movieUrl: string,
         public imageUrl: string,
         public rating: number,
-        public estimationAmount: number) {}
+        public estimationAmount: number,
+        public genres: Genre[],
+        public director: DirectorDetail,
+        public actors: ActorDetail[]) {}
 }

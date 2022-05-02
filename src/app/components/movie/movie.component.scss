@@ -1,0 +1,58 @@
+.movie-player{
+    max-width: 80%;
+    height: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.movie-detail{
+    max-width: 60%;
+    height: auto;
+    margin: 50px auto;
+    padding: 15px 20px;
+}
+
+.movie-detail-image {
+    width: 235px !important;
+    height: auto;
+}
+
+mat-card-content {
+    margin-top: 30px !important;
+}
+.card-top {
+    display: flex;
+    margin-top: 10px !important;
+    margin-left: 10px;
+}
+
+h1{
+    margin-top: 0px !important;
+    font-size: 30px;
+}
+
+.card-top-right{
+    margin-left: 20px ;
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+li{
+    margin-bottom: 5px;
+}
+
+span:first-of-type{
+      font-size: 15px !important;
+      font-weight: 600;
+  }
+
+  span + span{
+      margin-left: 3px;
+  }
+

@@ -3,6 +3,8 @@ import { MovieService } from '../../services/movie.service';
 import { MovieDetail } from '../../models/movieDetail';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { Genre } from 'src/app/models/genre';
+import { ActorDetail } from '../../models/actorDetail';
 
 @Component({
   selector: 'app-movie',
@@ -12,6 +14,8 @@ import { switchMap } from 'rxjs';
 export class MovieDetailComponent implements OnInit {
   
   public movie: MovieDetail;
+  public movieGenres: Genre[];
+  public movieActors: ActorDetail[];
   id: number | undefined;
 
 
@@ -30,6 +34,8 @@ export class MovieDetailComponent implements OnInit {
   getMovie(id:number) {
     this.movieService.getMovieById(id).subscribe(res=>{
       this.movie = res;
+      this.movieGenres = res['genres'];
+      this.movieActors = res['actors'];
     }, error=>console.log(error));
   }
 }
