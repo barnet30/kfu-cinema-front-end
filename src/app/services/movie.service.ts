@@ -47,4 +47,8 @@ export class MovieService {
   getMovieById(id:number): Observable<MovieDetail>{
     return this.http.get<MovieDetail>(`${this.apiUrl}api/cinema/movie/${id}`);
   }
+
+  updateMovieRating(estimation:number, movieId:number){
+    return this.http.post<any>(`${this.apiUrl}api/cinema/movie/${movieId}/rate`,{rate: estimation});
+  }
 }

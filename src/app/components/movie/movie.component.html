@@ -5,6 +5,38 @@
         <img src="{{this.movie.imageUrl}}" class="movie-detail-image">
 
         <div class="card-top-right">
+          <div class="card-rating">
+            <div class="big-star">★</div>  
+            <p style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
+              <span style="font-weight: 400; width: 10px; font-size: 28px !important;">{{this.movie.rating}}</span>
+              <span style="margin-left: 0 !important;">/10</span>
+              <span>(всего оценок {{this.movie.estimationAmount}})</span>
+            </p>
+            <div class="rating-area">
+              <span style="font-weight: 400; padding: 10px; position: relative; top:5px">Оцените фильм: </span>
+              <input type="radio" id="star-10" name="rating" value="10" (click)="updateMovieRating(10)">
+              <label for="star-10" title="Оценка «10»"></label>	
+              <input type="radio" id="star-9" name="rating" value="9" (click)="updateMovieRating(9)">
+              <label for="star-9" title="Оценка «9»"></label>	
+              <input type="radio" id="star-8" name="rating" value="8" (click)="updateMovieRating(8)">
+              <label for="star-8" title="Оценка «8»"></label>	
+              <input type="radio" id="star-7" name="rating" value="7" (click)="updateMovieRating(7)">
+              <label for="star-7" title="Оценка «7»"></label>	
+              <input type="radio" id="star-6" name="rating" value="6" (click)="updateMovieRating(6)">
+              <label for="star-6" title="Оценка «6»"></label>	
+              <input type="radio" id="star-5" name="rating" value="5" (click)="updateMovieRating(5)">
+              <label for="star-5" title="Оценка «5»"></label>	
+              <input type="radio" id="star-4" name="rating" value="4" (click)="updateMovieRating(4)">
+              <label for="star-4" title="Оценка «4»"></label>    
+              <input type="radio" id="star-3" name="rating" value="3" (click)="updateMovieRating(3)">
+              <label for="star-3" title="Оценка «3»"></label>  
+              <input type="radio" id="star-2" name="rating" value="2" (click)="updateMovieRating(2)">
+              <label for="star-2" title="Оценка «2»"></label>    
+              <input type="radio" id="star-1" name="rating" value="1" (click)="updateMovieRating(1)">
+              <label for="star-1" title="Оценка «1»"></label>
+            </div>
+          </div>
+          
           <h1>{{this.movie.name}}</h1>
           <br>
           <ul>

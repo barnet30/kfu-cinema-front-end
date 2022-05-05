@@ -23,6 +23,9 @@ import { RegistrationPageComponent } from './components/registration-page/regist
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { MovieDetailComponent } from './components/movie/movie.component';
+import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 export function tokenGetter(){
@@ -35,7 +38,8 @@ export function tokenGetter(){
     LoginPageComponent,
     RegistrationPageComponent,
     HomeComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    ModalDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ export function tokenGetter(){
     MatTableModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDialogModule,
     NgMultiSelectDropDownModule.forRoot(),
     
     JwtModule.forRoot({
