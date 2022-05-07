@@ -7,6 +7,8 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { CountryRef } from '../../models/countryRef';
 import { Genre } from 'src/app/models/genre';
 import { MovieFilterParameters } from '../../models/movieFilterParameters';
+import { Location } from '@angular/common'
+
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,8 @@ import { MovieFilterParameters } from '../../models/movieFilterParameters';
 })
 export class HomeComponent implements OnInit {
 
-  public movies: Page<MovieItem>;
+  public movies: MovieItem[];
+  public total: number;
   public countries: CountryRef[];
   public genresList: Genre[];
   genres = new FormControl();
@@ -24,7 +27,8 @@ export class HomeComponent implements OnInit {
   movieFilter = new MovieFilterParameters(null,null,null,null,null);
 
   constructor(private auth: AccountService,
-              private movieService: MovieService){ }
+              private movieService: MovieService,
+              private location: Location){ }
 
   ngOnInit(): void {
     this.getAllMovies();
@@ -45,7 +49,8 @@ export class HomeComponent implements OnInit {
 
  getAllMovies(){
     this.movieService.getMovies(this.movieFilter).subscribe(res=>{
-      this.movies = res;
+      this.movies = res['items'];
+      this.total = res['total'];
     });
   }
 
@@ -69,7 +74,9 @@ export class HomeComponent implements OnInit {
     this.movieFilter.genres = this.filterForm.value.genres;
     
     this.movieService.getMovies(this.movieFilter).subscribe(res=>{
-      this.movies = res;
+      this.movies = res['items'];
+      this.total = res['total'];
     });
+    location.reload();
   }
 }

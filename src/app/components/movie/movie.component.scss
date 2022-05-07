@@ -15,6 +15,7 @@
 .movie-detail-image {
     width: 235px !important;
     height: auto;
+    border-radius: 6px;
 }
 
 mat-card-content {
@@ -118,4 +119,12 @@ span:first-of-type{
     color: goldenrod;
     text-shadow: 1px 1px #bbb;
     cursor: default;
+}
+
+.my-rating{
+    margin-left: auto; 
+    margin-right: auto;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AccountService } from './services/account.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { AccountService } from './services/account.service';
 })
 export class AppComponent {
   title = 'kfu-cinema-front-end';
+  private route: ActivatedRoute;
 
   public get isLoggedIn(): boolean{
     return this.as.isAunthenticated();

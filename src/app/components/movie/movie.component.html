@@ -2,13 +2,16 @@
   <mat-card class="movie-detail">
     <!-- <mat-card-title> -->
       <div class="card-top">
-        <img src="{{this.movie.imageUrl}}" class="movie-detail-image">
+        <div *ngIf="this.movie">
+          <img src="{{movie.imageUrl}}" class="movie-detail-image">
+        </div>
 
         <div class="card-top-right">
+          <div *ngIf="this.movie">
           <div class="card-rating">
             <div class="big-star">★</div>  
             <p style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
-              <span style="font-weight: 400; width: 10px; font-size: 28px !important;">{{this.movie.rating}}</span>
+                <span style="font-weight: 400; width: 10px; font-size: 28px !important;">{{this.movie.rating}}</span>
               <span style="margin-left: 0 !important;">/10</span>
               <span>(всего оценок {{this.movie.estimationAmount}})</span>
             </p>
@@ -35,8 +38,15 @@
               <input type="radio" id="star-1" name="rating" value="1" (click)="updateMovieRating(1)">
               <label for="star-1" title="Оценка «1»"></label>
             </div>
+            <div *ngIf="isAuthenticated() && this.myEstimate" class="my-rating">
+              <span style="font-size: 25px !important; font-weight: 500;">{{this.myEstimate}}</span>
+              <span>Моя оценка</span>
+            </div>
+
           </div>
-          
+        </div>
+
+          <div *ngIf="this.movie">
           <h1>{{this.movie.name}}</h1>
           <br>
           <ul>
@@ -74,10 +84,13 @@
             </li>
           </ul>
         </div>
+        </div>
       </div>
     
       
    <mat-card-content>
+    <div *ngIf="this.movie">
+
     <div class="movie-player">
       <vm-player>
         <vm-video>
@@ -87,11 +100,13 @@
         </vm-default-ui>
       </vm-player>
   </div>
+  </div>
+
    </mat-card-content>   
   </mat-card>
 </div>
 
-
+<app-scroll-top></app-scroll-top>
 
 <!-- <div style="max-width: 40%; height: auto;">
     <vm-player>

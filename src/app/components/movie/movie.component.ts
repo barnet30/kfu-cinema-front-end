@@ -8,6 +8,8 @@ import { ActorDetail } from '../../models/actorDetail';
 import { AccountService } from '../../services/account.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
+import { Location } from '@angular/common'
+
 
 @Component({
   selector: 'app-movie',
@@ -19,15 +21,15 @@ export class MovieDetailComponent implements OnInit {
   public movie: MovieDetail;
   public movieGenres: Genre[];
   public movieActors: ActorDetail[];
-  public estimate: number;
+  public myEstimate: number|null;
   id: number | undefined;
-	private isModalDialogVisible: boolean = false;
 
 
   constructor(private movieService:MovieService,
     private route: ActivatedRoute,
     private authService: AccountService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -36,6 +38,7 @@ export class MovieDetailComponent implements OnInit {
   .subscribe(data=> this.id = +data);
 
     this.getMovie(this.id);
+    this.getUserEstimation()
   }
 
   getMovie(id:number) {
@@ -54,12 +57,17 @@ export class MovieDetailComponent implements OnInit {
     }
 
     this.movieService.updateMovieRating(estimation,this.movie.id).subscribe(res=>
-      {}
+      {
+        location.reload();
+      }
       ,error=>console.log(error));
   }
 
   showDialog() {
-    const dialogRef = this.dialog.open(ModalDialogComponent);
+    const dialogRef = this.dialog.open(ModalDialogComponent,{
+      autoFocus:false,
+      width: '350px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -69,4 +77,15 @@ export class MovieDetailComponent implements OnInit {
   isAuthenticated() : boolean {
     return this.authService.isAunthenticated();
   }
+
+  getUserEstimation() : void|null{
+    if(!this.isAuthenticated()){
+      return null;
+    }
+
+    this.movieService.getUserEstimationByMovieId(this.id).subscribe(res=>{
+      this.myEstimate = res;
+    })
+  }
+  
 }

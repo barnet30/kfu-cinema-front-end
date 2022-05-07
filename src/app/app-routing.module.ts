@@ -9,7 +9,11 @@ const routes: Routes = [
   { path: '', component:HomeComponent},
   { path: 'login', component:LoginPageComponent},
   { path: 'register', component: RegistrationPageComponent},
-  { path: 'movie/:id', component: MovieDetailComponent}
+  { path: 'movie/:id', component: MovieDetailComponent},
+
+  
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

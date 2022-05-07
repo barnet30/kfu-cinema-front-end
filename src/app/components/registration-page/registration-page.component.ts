@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../../services/account.service';
+import { Location } from '@angular/common'
+
 
 @Component({
   selector: 'app-registration-page',
@@ -15,7 +17,8 @@ export class RegistrationPageComponent implements OnInit {
   aSub: Subscription
   
   constructor(private auth: AccountService,
-              private router: Router) { }
+              private router: Router,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -29,7 +32,7 @@ export class RegistrationPageComponent implements OnInit {
     this.form.disable();
     this.aSub = this.auth.register(this.form.value.username, this.form.value.password, this.form.value.email).subscribe(
       res =>  {
-        this.router.navigate(['']);
+        this.location.back();
       },
       error => {
         alert('Something went wrong');

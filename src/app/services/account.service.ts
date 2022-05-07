@@ -5,6 +5,7 @@ import {CINEMA_API_URL} from '../app-injection-tokens'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { Token } from '../models/token';
+import { Location } from '@angular/common'
 
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
@@ -20,7 +21,7 @@ export class AccountService {
     private http: HttpClient,
     @Inject(CINEMA_API_URL) private apiUrl : string,
     private jwtHelper: JwtHelperService,
-    private router: Router
+    private location: Location
   ) { } 
 
   login(username: string, password: string ): Observable<Token>{
@@ -53,7 +54,7 @@ export class AccountService {
   logout(): void{
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     this.token = null;
-    this.router.navigate(['']);
+    location.reload();
   }
 
   setToken(token: string){

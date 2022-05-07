@@ -51,4 +51,8 @@ export class MovieService {
   updateMovieRating(estimation:number, movieId:number){
     return this.http.post<any>(`${this.apiUrl}api/cinema/movie/${movieId}/rate`,{rate: estimation});
   }
+
+  getUserEstimationByMovieId(movieId:number){
+    return this.http.get<number|null>(`${this.apiUrl}api/cinema/rate/${movieId}`,{});
+  }
 }

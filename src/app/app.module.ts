@@ -25,6 +25,8 @@ import { HomeComponent } from './components/home/home.component';
 import { MovieDetailComponent } from './components/movie/movie.component';
 import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AuthGuard } from './guards/authGuard';
+import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 
 
 
@@ -39,7 +41,8 @@ export function tokenGetter(){
     RegistrationPageComponent,
     HomeComponent,
     MovieDetailComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,7 @@ export function tokenGetter(){
   providers: [{
     provide: CINEMA_API_URL,
     useValue: environment.cinemaApi
-  }],
+  },AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

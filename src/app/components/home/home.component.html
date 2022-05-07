@@ -35,7 +35,7 @@
 </aside>
 
 
-<div style="margin-top: 70px;" *ngFor="let movie of movies['items']">
+<div style="margin-top: 70px;" *ngFor="let movie of movies">
   <mat-card class="movie-item-card">
     <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}" [routerLink]="['movie', movie.id]">
     <mat-card-content class="movie-item-conent">
@@ -50,3 +50,5 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<app-scroll-top></app-scroll-top>
