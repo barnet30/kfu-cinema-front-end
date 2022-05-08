@@ -1,7 +1,18 @@
 <nav class="sticky">
     <div class="nav-wrapper darken-1">
-        <a routerLink="/" class="brand-logo">kfu cinema simulator</a>
+        <ul>
+            <li>
+                <a routerLink="/" class="logo">Киномир</a>
+            </li>
+            <li>
+                <a>Фильмы</a>
+            </li>
+        </ul>
+
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li *ngIf="isLoggedIn">
+                <a>{{this.getUsername()}}</a>
+            </li>
             <li *ngIf="!isLoggedIn" routerLinkActive="active">
                 <a [routerLink]="['/login']">Вход</a>
             </li>
@@ -9,7 +20,7 @@
                 <a [routerLink]="['/register']">Регистрация</a>
             </li>
             <li *ngIf="isLoggedIn">
-                <a [routerLink]="['']" (click)='logout()'>Выйти</a>
+                <a (click)='logout()'>Выйти</a>
             </li>
         </ul>
     </div>

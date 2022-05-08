@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'kfu-cinema-front-end';
   private route: ActivatedRoute;
+  username: string;
 
   public get isLoggedIn(): boolean{
     return this.as.isAunthenticated();
@@ -16,16 +18,11 @@ export class AppComponent {
 
   constructor(private as: AccountService){ }
   
-  login(username: string, password: string){
-    this.as.login(username, password)
-      .subscribe(result => {
-
-      }, error => {
-        alert('Wrong login or password')
-      })
-  }
-
   logout(){
     this.as.logout();
+  }
+
+  getUsername() : string{
+    return this.username = this.as.getUsername();
   }
 }
