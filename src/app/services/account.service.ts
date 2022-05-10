@@ -69,4 +69,10 @@ export class AccountService {
     let jwt = this.jwtHelper.decodeToken(localStorage.getItem(ACCESS_TOKEN_KEY));
     return jwt['username'];
   }
+
+  isAdmin(): boolean {
+    let jwt = this.jwtHelper.decodeToken(localStorage.getItem(ACCESS_TOKEN_KEY));
+    let roles = jwt['role'];  
+    return roles.includes('Admin');
+  }
 }

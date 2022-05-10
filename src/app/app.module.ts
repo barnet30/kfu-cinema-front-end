@@ -27,6 +27,7 @@ import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.com
 import {MatDialogModule} from '@angular/material/dialog';
 import { AuthGuard } from './guards/authGuard';
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
+import { AdministrationComponent } from './components/administration/administration.component';
 
 
 
@@ -42,7 +43,8 @@ export function tokenGetter(){
     HomeComponent,
     MovieDetailComponent,
     ModalDialogComponent,
-    ScrollTopComponent
+    ScrollTopComponent,
+    AdministrationComponent
   ],
   imports: [
     BrowserModule,

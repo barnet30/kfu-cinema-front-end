@@ -1,6 +1,6 @@
 <aside>
   <mat-card class="filter-card">
-    <mat-card-title class="filter-card-title">
+    <mat-card-title class="filter-card-title" style="color: white; cursor: default; text-decoration:unset !important;">
       <img src="assets/icons/icon-sort-settings.svg" class="svg-filter">
       Фильтр
     </mat-card-title>
@@ -35,11 +35,11 @@
 </aside>
 
 
-<div style="margin-top: 70px;" *ngFor="let movie of movies">
+<div style="margin-top: 50px; margin-left: 0px" *ngFor="let movie of movies">
   <mat-card class="movie-item-card">
     <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}" [routerLink]="['movie', movie.id]">
     <mat-card-content class="movie-item-conent">
-      <mat-card-title>{{movie.name}}</mat-card-title>
+      <mat-card-title [routerLink]="['movie', movie.id]">{{movie.name}}</mat-card-title>
       <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
         <mat-card-subtitle>
           <p style="display: inline;" *ngFor="let genre of movie.genres">

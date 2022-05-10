@@ -5,7 +5,10 @@
                 <a routerLink="/" class="logo">Киномир</a>
             </li>
             <li>
-                <a>Фильмы</a>
+                <a routerLink="/">Фильмы</a>
+            </li>
+            <li *ngIf="isLoggedIn && isAdmin">
+                <a routerLink="/administration">Администрирование</a>
             </li>
         </ul>
 

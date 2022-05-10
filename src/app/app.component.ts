@@ -13,16 +13,21 @@ export class AppComponent{
   username: string;
 
   public get isLoggedIn(): boolean{
-    return this.as.isAunthenticated();
+    return this.authService.isAunthenticated();
   }
 
-  constructor(private as: AccountService){ }
+  public get isAdmin(): boolean{
+    return this.authService.isAdmin();
+  }
+
+  constructor(private authService: AccountService){ }
   
   logout(){
-    this.as.logout();
+    this.authService.logout();
   }
 
   getUsername() : string{
-    return this.username = this.as.getUsername();
+    return this.username = this.authService.getUsername();
   }
+
 }

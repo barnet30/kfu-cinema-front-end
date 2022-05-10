@@ -40,7 +40,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .nav-wrapper{
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
+mat-card{
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  border: 1px solid #ccc !important;
+}

@@ -25,14 +25,18 @@ export class MovieService {
     private router: Router
   ) { }
 
-  getMovies(filterParams: MovieFilterParameters): Observable<Page<MovieItem>>{        
-    return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{
-      yearFrom: filterParams.yearFrom, 
-      yearTo: filterParams.yearTo,
-      name: filterParams.name,
-      countryId: filterParams.countryId,
-      genres: filterParams.genres
-    });
+  getMovies(filterParams: MovieFilterParameters | null): Observable<Page<MovieItem>>{  
+    
+    if (filterParams){
+      return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{
+        yearFrom: filterParams.yearFrom, 
+        yearTo: filterParams.yearTo,
+        name: filterParams.name,
+        countryId: filterParams.countryId,
+        genres: filterParams.genres
+      });
+    }
+    return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{});
   }
 
   getCounties(): Observable<CountryRef[]>{

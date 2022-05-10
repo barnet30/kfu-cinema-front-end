@@ -3,7 +3,8 @@
     margin-bottom: 10px;
     display: flex;
     float: left;
-    margin-left: 13%;
+    margin-left: 15%;
+    border: 1px #ccc;
   }
 
 .movie-item-conent{
@@ -17,16 +18,21 @@
     cursor: pointer;
 }
 
+button{
+    border-radius: 2px;
+    box-shadow: none !important;
+}
 
 aside {
-    width: 33%;
+    width: auto;
     float: right;
+    margin-right: 15%;
  }
 
  .filter-card{
     background-color: rgb(52,58,64);
     max-width: 250px;
-    margin-top: 70px;
+    margin-top: 50px;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
@@ -36,6 +42,10 @@ aside {
      color: white;
      padding-left: 10px;
      margin-bottom: 18px;
+ }
+ mat-card-title > ::before.filter-card-title :hover{
+    color: unset !important;
+    text-decoration:unset !important;
  }
 
   .svg-filter{
@@ -82,4 +92,13 @@ aside {
     height: 50px;
     font-size: 16px;
     margin-left: -15px;
+}
+
+mat-card-title{
+    cursor: pointer;
+    color:rgb(52,58,64);
+}
+mat-card-title:hover{
+    color: black;
+    text-decoration: underline;
 }
