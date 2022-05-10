@@ -7,8 +7,8 @@
     <form [formGroup]="filterForm" class="filter-container"> 
       <label class="filter-field-label">Год выхода</label>
       <div class="input-field">
-        <input formControlName="yearFrom" class="filter-card-input" placeholder="Начало">
-        <input formControlName="yearTo" class="filter-card-input" placeholder="Конец">
+        <input formControlName="yearFrom" class="filter-card-input" type="number" placeholder="Начало">
+        <input formControlName="yearTo" class="filter-card-input" type="number" placeholder="Конец">
       </div>
       <label class="filter-field-label">Название фильма</label>
       <div class="input-field">

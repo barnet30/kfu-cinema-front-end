@@ -49,3 +49,19 @@ mat-card{
   box-shadow: none !important;
   border: 1px solid #ccc !important;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.app-full-bleed-dialog .mat-dialog-container {
+  padding: 0;
+  padding-bottom: 0 !important;
+}

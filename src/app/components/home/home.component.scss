@@ -85,6 +85,16 @@ aside {
       margin-left: 15px;
   }
 
+.filter-card-input[type=number]{
+    padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      height: auto;
+      width: 70%;
+      margin-left: 15px;
+}
+
 .filter-apply-btn{
     width: 250px;
     background-color: rgb(52,58,64);
