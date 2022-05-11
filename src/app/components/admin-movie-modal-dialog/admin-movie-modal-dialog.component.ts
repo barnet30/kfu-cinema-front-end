@@ -49,9 +49,9 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
       year: new FormControl(null),
       description: new FormControl(null),
       movieUrl: new FormControl(null),
-      imageUrl: new FormControl(null),
+      imageUrl: new FormControl(null)
       // directorId: new FormControl(null),
-      genres: new FormControl(null)
+      // genres: new FormControl(null)
     });
 
     this.getMovieDetail(this.id);
@@ -65,7 +65,7 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
   getMovieDetail(id: number){
 
     if (id === 0){
-      this.movieForm.reset();
+      // this.movieForm.patchValue(null);
     }
     else{
       this.movieService.getMovieById(id).subscribe(res=>{

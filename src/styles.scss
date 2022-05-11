@@ -65,3 +65,29 @@ input[type=number] {
   padding: 0;
   padding-bottom: 0 !important;
 }
+
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #26a69a !important;
+}
+
+.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #26a69a !important;;
+}
+
+.mat-select:focus .mat-select-trigger .mat-select-arrow {
+  color: #26a69a !important;
+}
+
+.mat-selected {
+  color: #26a69a !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: unset;
+}
+
+.mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background-color: #26a69a;
+}

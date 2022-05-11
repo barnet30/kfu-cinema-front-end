@@ -7,7 +7,8 @@
            id="name" 
            type="text" 
            >
-          <label for="name" *ngIf="this.movie" [ngClass]="this.movie.name ? 'active': null">Название:</label>
+          <label for="name" *ngIf="this.movie" [ngClass]="this.movie.name !== undefined ? 'active':'validate'">Название:</label>
+          <label for="name" *ngIf="!this.movie">Название:</label>
       </div>
       <div class="input-field">
           <input 
@@ -16,6 +17,7 @@
           type="number" 
           >
           <label for="year" *ngIf="this.movie" [ngClass]="this.movie.year ? 'active': null">Год выхода:</label>
+          <label for="year" *ngIf="!this.movie">Год выхода:</label>
       </div>
       <div class="input-field">
           <input
@@ -24,18 +26,28 @@
            type="text" 
            >
           <label for="movieUrl" *ngIf="this.movie" [ngClass]="this.movie.movieUrl ? 'active': null">Относительный url фильма:</label>
+          <label for="movieUrl" *ngIf="!this.movie">Относительный url фильма:</label>
       </div>
-      <div class="input-field">
-        <select>
-          
-        </select>
-        <input
-        formControlName="movieUrl"
-         id="movieUrl" 
-         type="text" 
-         >
-        <label for="movieUrl" *ngIf="this.movie" [ngClass]="this.movie.movieUrl ? 'active': null">Относительный url фильма:</label>
-    </div>
+
+      <mat-form-field>
+        <mat-label>Страна</mat-label>
+        <div *ngIf="this.movie">
+          <mat-select name="country" [(ngModel)]="this.movie.countryId" [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let country of countryList" [value]="country.id">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div *ngIf="!this.movie">
+          <mat-select name="country">
+            <mat-option *ngFor="let country of countryList" [value]="country.id">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+
   </div>
   <div class="card-action">
       <button 
