@@ -10,6 +10,8 @@ import { CountryRef } from '../models/countryRef';
 import { Genre } from '../models/genre';
 import { MovieFilterParameters } from '../models/movieFilterParameters';
 import { MovieDetail } from '../models/movieDetail';
+import { DirectorDetail } from '../models/directorDetail';
+import { ActorDetail } from '../models/actorDetail';
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 
@@ -58,5 +60,13 @@ export class MovieService {
 
   getUserEstimationByMovieId(movieId:number){
     return this.http.get<number|null>(`${this.apiUrl}api/cinema/rate/${movieId}`,{});
+  }
+
+  getDirectorsDetails(){
+    return this.http.get<DirectorDetail[]>(`${this.apiUrl}api/cinema/directors`,{});
+  }
+  
+  getActorsDetails(){
+    return this.http.post<ActorDetail[]>(`${this.apiUrl}api/cinema/actors`,{});
   }
 }

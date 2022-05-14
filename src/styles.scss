@@ -91,3 +91,9 @@ input[type=number] {
 .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
   background-color: #26a69a;
 }
+
+.app-full-bleed-dialog .mat-dialog-content {
+  padding: 0 !important;
+  max-width: 100%;
+  margin: 0 !important;
+}

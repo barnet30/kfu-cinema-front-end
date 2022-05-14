@@ -4,7 +4,6 @@ import { MovieItem } from '../../models/movieItem';
 import {MatTable} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminMovieModalDialogComponent } from '../admin-movie-modal-dialog/admin-movie-modal-dialog.component';
-import { MovieDetail } from '../../models/movieDetail';
 import { ModalFormAction } from 'src/app/common/modalFormAction';
 
 @Component({
@@ -37,12 +36,20 @@ export class AdministrationComponent implements OnInit {
   }
 
   openDialog(movieId:number){
+    let action: ModalFormAction;
+
+    if(movieId == 0){
+      action = ModalFormAction.Create;
+    } else {
+      action = ModalFormAction.Update;
+    }
 
     const dialogRef = this.dialog.open(AdminMovieModalDialogComponent, {
-      width: '500px',
-      data: {id: movieId, action: ModalFormAction.Update},
+      width: '600px',
+      height:'auto',
+      data: {id: movieId, action: action},
       panelClass: 'app-full-bleed-dialog',
-      autoFocus: false
+      autoFocus: false,
     });
   }
 }

@@ -1,66 +1,149 @@
-<form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="card">
-  <div class="card-content">
-      <span class="card-title">Редактирование</span>
-      <div class="input-field">
+<mat-dialog-content>
+  <form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="card">
+    <div class="card-content">
+        <span class="card-title">{{this.titleDialog}}</span>
+        <div class="input-field">
+            <input
+            formControlName="name"
+             id="name" 
+             type="text" 
+             >
+            <label for="name" *ngIf="this.movie" [ngClass]="this.movie.name !== undefined ? 'active':'validate'">Название:</label>
+            <label for="name" *ngIf="!this.movie">Название:</label>
+        </div>
+  
+        <mat-form-field>
+          <mat-label>Страна</mat-label>
+          <div *ngIf="this.movie">
+            <mat-select name="country" [(ngModel)]="this.movie.countryId" [ngModelOptions]="{standalone: true}">
+              <mat-option *ngFor="let country of countryList" [value]="country.id">
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+          </div>
+  
+          <div *ngIf="!this.movie">
+            <mat-select name="country">
+              <mat-option *ngFor="let country of countryList" [value]="country.id">
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+          </div>
+        </mat-form-field>
+  
+        <div class="input-field">
+            <input 
+            formControlName="year"
+            id="year" 
+            type="number" 
+            >
+            <label for="year" *ngIf="this.movie" [ngClass]="this.movie.year ? 'active': null">Год выхода:</label>
+            <label for="year" *ngIf="!this.movie">Год выхода:</label>
+        </div>
+  
+        <div class="input-field">
+          <textarea
+          formControlName="description"
+          id="description" 
+          type="text" 
+          ></textarea>
+          <label for="description" *ngIf="this.movie" [ngClass]="this.movie.description ? 'active': null">Описание фильма:</label>
+          <label for="description" *ngIf="!this.movie">Описание фильма:</label>
+        </div>
+  
+        <div class="input-field">
+            <input
+            formControlName="movieUrl"
+             id="movieUrl" 
+             type="text" 
+             >
+            <label for="movieUrl" *ngIf="this.movie" [ngClass]="this.movie.movieUrl ? 'active': null">Относительный url фильма:</label>
+            <label for="movieUrl" *ngIf="!this.movie">Относительный url фильма:</label>
+        </div>
+  
+        <div class="input-field">
           <input
-          formControlName="name"
-           id="name" 
+          formControlName="imageUrl"
+           id="imageUrl" 
            type="text" 
            >
-          <label for="name" *ngIf="this.movie" [ngClass]="this.movie.name !== undefined ? 'active':'validate'">Название:</label>
-          <label for="name" *ngIf="!this.movie">Название:</label>
-      </div>
-      <div class="input-field">
-          <input 
-          formControlName="year"
-          id="year" 
-          type="number" 
-          >
-          <label for="year" *ngIf="this.movie" [ngClass]="this.movie.year ? 'active': null">Год выхода:</label>
-          <label for="year" *ngIf="!this.movie">Год выхода:</label>
-      </div>
-      <div class="input-field">
-          <input
-          formControlName="movieUrl"
-           id="movieUrl" 
-           type="text" 
-           >
-          <label for="movieUrl" *ngIf="this.movie" [ngClass]="this.movie.movieUrl ? 'active': null">Относительный url фильма:</label>
-          <label for="movieUrl" *ngIf="!this.movie">Относительный url фильма:</label>
-      </div>
-
+          <label for="imageUrl" *ngIf="this.movie" [ngClass]="this.movie.imageUrl ? 'active': null">Ссылка на постер фильма:</label>
+          <label for="imageUrl" *ngIf="!this.movie">Ссылка на постер фильма:</label>
+      </div> 
+      
       <mat-form-field>
-        <mat-label>Страна</mat-label>
+        <mat-label>Режиссер</mat-label>
         <div *ngIf="this.movie">
-          <mat-select name="country" [(ngModel)]="this.movie.countryId" [ngModelOptions]="{standalone: true}">
-            <mat-option *ngFor="let country of countryList" [value]="country.id">
-              {{country.name}}
+          <mat-select name="director" [(ngModel)]="this.movie.director.id" [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let director of directorList" [value]="director.id">
+              {{director.name}} {{director.lastName}}
             </mat-option>
           </mat-select>
         </div>
-
+  
         <div *ngIf="!this.movie">
-          <mat-select name="country">
-            <mat-option *ngFor="let country of countryList" [value]="country.id">
-              {{country.name}}
+          <mat-select name="director">
+            <mat-option *ngFor="let director of directorList" [value]="director.id">
+              {{director.name}} {{director.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Жанры</mat-label>
+        <div *ngIf="this.movie">
+          <mat-select name="genres" [(ngModel)]="this.movieGenresIds" multiple [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+              {{genre.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+      
+        <div *ngIf="!this.movie">
+          <mat-select name="genres"multiple>
+            <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+              {{genre.name}}
             </mat-option>
           </mat-select>
         </div>
       </mat-form-field>
 
-  </div>
-  <div class="card-action">
-      <button 
-      type="submit"
-      class="modal-action btn waves-effect">
-      Обновить
-      </button>
-  </div>
-</form>
-<!-- 
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-</div> -->
+      <mat-form-field>
+        <mat-label>Список актёров:</mat-label>
+        <div *ngIf="this.movie">
+          <mat-select name="actors" [(ngModel)]="this.movieActorIds" multiple [ngModelOptions]="{standalone: true}">
+            <input style="padding-left: 10px;" placeholder="Поиск..." type="text" matInput (keyup)="onKey($event.target)"> 
+            <mat-option *ngFor="let actor of actorList" [value]="actor.id">
+              {{actor.name}} {{actor.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      
+        <div *ngIf="!this.movie">
+          <mat-select name="actors"multiple>
+            <mat-option *ngFor="let actor of actorList" [value]="actor.id">
+              {{actor.name}} {{actor.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+
+    </div>
+    <div class="card-action">
+        <button 
+        type="submit"
+        class="modal-action btn waves-effect">
+        {{this.btnActionName}}
+        </button>
+    </div>
+  </form>
+  <!-- 
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+  </div> -->
+  
+</mat-dialog-content>
 
 
 <ng-template #create_field_template></ng-template>
