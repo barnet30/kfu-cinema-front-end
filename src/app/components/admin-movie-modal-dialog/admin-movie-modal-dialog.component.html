@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="card">
+  <form [formGroup]="movieForm" (ngSubmit)="clickOnAction()" class="card">
     <div class="card-content">
         <span class="card-title">{{this.titleDialog}}</span>
         <div class="input-field">
@@ -15,16 +15,16 @@
         <mat-form-field>
           <mat-label>Страна</mat-label>
           <div *ngIf="this.movie">
-            <mat-select name="country" [(ngModel)]="this.movie.countryId" [ngModelOptions]="{standalone: true}">
-              <mat-option *ngFor="let country of countryList" [value]="country.id">
+            <mat-select name="country" formControlName="country" [compareWith]="compareObjects">
+              <mat-option *ngFor="let country of countryList" [value]="country">
                 {{country.name}}
               </mat-option>
             </mat-select>
           </div>
   
           <div *ngIf="!this.movie">
-            <mat-select name="country">
-              <mat-option *ngFor="let country of countryList" [value]="country.id">
+            <mat-select formControlName="country" name="country">
+              <mat-option *ngFor="let country of countryList" [value]="country">
                 {{country.name}}
               </mat-option>
             </mat-select>
@@ -74,16 +74,16 @@
       <mat-form-field>
         <mat-label>Режиссер</mat-label>
         <div *ngIf="this.movie">
-          <mat-select name="director" [(ngModel)]="this.movie.director.id" [ngModelOptions]="{standalone: true}">
-            <mat-option *ngFor="let director of directorList" [value]="director.id">
+          <mat-select name="director" formControlName="director" [compareWith]="compareObjects">
+            <mat-option *ngFor="let director of directorList" [value]="director">
               {{director.name}} {{director.lastName}}
             </mat-option>
           </mat-select>
         </div>
   
         <div *ngIf="!this.movie">
-          <mat-select name="director">
-            <mat-option *ngFor="let director of directorList" [value]="director.id">
+          <mat-select formControlName="director" name="director">
+            <mat-option *ngFor="let director of directorList" [value]="director">
               {{director.name}} {{director.lastName}}
             </mat-option>
           </mat-select>
@@ -93,16 +93,16 @@
       <mat-form-field>
         <mat-label>Жанры</mat-label>
         <div *ngIf="this.movie">
-          <mat-select name="genres" [(ngModel)]="this.movieGenresIds" multiple [ngModelOptions]="{standalone: true}">
-            <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+          <mat-select name="genres" multiple formControlName="genres" [compareWith]="compareObjects">
+            <mat-option *ngFor="let genre of genreList" [value]="genre">
               {{genre.name}}
             </mat-option>
           </mat-select>
         </div>
       
         <div *ngIf="!this.movie">
-          <mat-select name="genres"multiple>
-            <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+          <mat-select name="genres" multiple formControlName="genres">
+            <mat-option *ngFor="let genre of genreList" [value]="genre">
               {{genre.name}}
             </mat-option>
           </mat-select>
@@ -112,17 +112,18 @@
       <mat-form-field>
         <mat-label>Список актёров:</mat-label>
         <div *ngIf="this.movie">
-          <mat-select name="actors" [(ngModel)]="this.movieActorIds" multiple [ngModelOptions]="{standalone: true}">
+          <mat-select name="actors" multiple formControlName="actors" [compareWith]="compareObjects">
             <input style="padding-left: 10px;" placeholder="Поиск..." type="text" matInput (keyup)="onKey($event.target)"> 
-            <mat-option *ngFor="let actor of actorList" [value]="actor.id">
+            <mat-option *ngFor="let actor of actorList" [value]="actor">
               {{actor.name}} {{actor.lastName}}
             </mat-option>
           </mat-select>
         </div>
       
         <div *ngIf="!this.movie">
-          <mat-select name="actors"multiple>
-            <mat-option *ngFor="let actor of actorList" [value]="actor.id">
+          <mat-select name="actors" multiple formControlName="actors">
+            <input style="padding-left: 10px;" placeholder="Поиск..." type="text" matInput (keyup)="onKey($event.target)"> 
+            <mat-option *ngFor="let actor of actorList" [value]="actor">
               {{actor.name}} {{actor.lastName}}
             </mat-option>
           </mat-select>
@@ -137,12 +138,7 @@
         {{this.btnActionName}}
         </button>
     </div>
-  </form>
-  <!-- 
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-  </div> -->
-  
+  </form>  
 </mat-dialog-content>
 
 

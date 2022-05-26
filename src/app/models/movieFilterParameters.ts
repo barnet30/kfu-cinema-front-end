@@ -1,9 +1,11 @@
 export class MovieFilterParameters{
     constructor(
-        public yearFrom: number,
-        public yearTo: number,
-        public name: string,
-        public countryId: number,
-        public genres: number[]
+        public limit: number,
+        public offset: number,
+        public yearFrom?: number,
+        public yearTo?: number,
+        public name?: string,
+        public countryId?: number,
+        public genres?: number[]
     ){}
 }

@@ -5,13 +5,15 @@ import { RegistrationPageComponent } from './components/registration-page/regist
 import { HomeComponent } from './components/home/home.component';
 import { MovieDetailComponent } from './components/movie/movie.component';
 import { AdministrationComponent } from './components/administration/administration.component';
+import { AuthGuard } from './guards/authGuard';
+import { AuthRoleGuard } from './guards/authRoleGuard';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
   { path: 'login', component:LoginPageComponent},
   { path: 'register', component: RegistrationPageComponent},
   { path: 'movie/:id', component: MovieDetailComponent},
-  { path: 'administration', component: AdministrationComponent},
+  { path: 'administration', component: AdministrationComponent, canActivate: [AuthGuard, AuthRoleGuard]},
   
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

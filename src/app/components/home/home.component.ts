@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   genres = new FormControl();
   filterForm: FormGroup;
   selectedCountry: string;
-  movieFilter = new MovieFilterParameters(null,null,null,null,null);
+  movieFilter: MovieFilterParameters = null;
 
   constructor(private auth: AccountService,
               private movieService: MovieService,
@@ -77,6 +77,5 @@ export class HomeComponent implements OnInit {
       this.movies = res['items'];
       this.total = res['total'];
     });
-    location.reload();
   }
 }

@@ -9,7 +9,6 @@ import { AccountService } from './services/account.service';
 })
 export class AppComponent{
   title = 'kfu-cinema-front-end';
-  private route: ActivatedRoute;
   username: string;
 
   public get isLoggedIn(): boolean{

@@ -12,6 +12,8 @@ import { MovieFilterParameters } from '../models/movieFilterParameters';
 import { MovieDetail } from '../models/movieDetail';
 import { DirectorDetail } from '../models/directorDetail';
 import { ActorDetail } from '../models/actorDetail';
+import { MovieCreate } from '../models/movieCreate';
+import { MovieUpdate } from '../models/movieUpdate';
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 
@@ -28,15 +30,8 @@ export class MovieService {
   ) { }
 
   getMovies(filterParams: MovieFilterParameters | null): Observable<Page<MovieItem>>{  
-    
     if (filterParams){
-      return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{
-        yearFrom: filterParams.yearFrom, 
-        yearTo: filterParams.yearTo,
-        name: filterParams.name,
-        countryId: filterParams.countryId,
-        genres: filterParams.genres
-      });
+      return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`, filterParams);
     }
     return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{});
   }
@@ -67,6 +62,18 @@ export class MovieService {
   }
   
   getActorsDetails(){
-    return this.http.post<ActorDetail[]>(`${this.apiUrl}api/cinema/actors`,{});
+    return this.http.get<ActorDetail[]>(`${this.apiUrl}api/cinema/actors`,{});
+  }
+
+  createMovie(createMovieForm: MovieCreate){
+    return this.http.post<MovieDetail>(`${this.apiUrl}api/cinema/movie`,createMovieForm);
+  }
+
+  updateMovie(updateMovieForm: MovieUpdate){
+    return this.http.put<MovieDetail>(`${this.apiUrl}api/cinema/movie`,updateMovieForm);
+  }
+
+  removeMovie(id: number){
+    return this.http.delete(`${this.apiUrl}api/cinema/movie/${id}`);
   }
 }

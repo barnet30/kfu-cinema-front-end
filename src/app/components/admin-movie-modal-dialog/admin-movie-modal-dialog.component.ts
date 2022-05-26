@@ -8,6 +8,8 @@ import { CountryRef } from '../../models/countryRef';
 import { DirectorDetail } from '../../models/directorDetail';
 import { Genre } from 'src/app/models/genre';
 import { ActorDetail } from '../../models/actorDetail';
+import { MovieCreate } from '../../models/movieCreate';
+import { MovieUpdate } from '../../models/movieUpdate';
 
 export interface MovieDialogData{
   id: number | null;
@@ -19,7 +21,7 @@ export interface MovieDialogData{
   templateUrl: './admin-movie-modal-dialog.component.html',
   styleUrls: ['./admin-movie-modal-dialog.component.scss']
 })
-export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
+export class AdminMovieModalDialogComponent implements OnInit{
 
   id: number | null;
   action: ModalFormAction;
@@ -27,8 +29,6 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
   btnActionName: string;
 
   movie: MovieDetail;
-  movieGenresIds: number[];
-  movieActorIds: number[];
   countryList: CountryRef[];
   directorList: DirectorDetail[];
   genreList: Genre[];
@@ -39,13 +39,6 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
   constructor(public dialogRef: MatDialogRef<AdminMovieModalDialogComponent>,
     private movieService: MovieService,
     @Inject(MAT_DIALOG_DATA) private data: MovieDialogData) { }
-
-    ngAfterContentInit(): void {
-
-    if(this.action === ModalFormAction.Update){
-      
-    }
-  }
     
   ngOnInit(): void {
     this.id = this.data.id;
@@ -63,10 +56,10 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
     this.getDirectors();
     this.getGenres();
     this.getActors();
+
     this.movieForm = new FormGroup({
       id: new FormControl(null),
       name: new FormControl(null),
-      countryId: new FormControl(null),
       country: new FormControl(null),
       year: new FormControl(null),
       description: new FormControl(null),
@@ -91,9 +84,8 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
     else{
       this.movieService.getMovieById(id).subscribe(res=>{
         this.movie = res;
-        this.movieGenresIds = res.genres.map(x=>x.id);
-        this.movieActorIds = res.actors.map(x=>x.id);
         this.movieForm.patchValue(res);
+        this.movieForm.patchValue({country:{id:res.countryId, name:res.country}});
       });
     }
   }
@@ -118,7 +110,7 @@ export class AdminMovieModalDialogComponent implements OnInit, AfterContentInit{
 
   getActors(){
     this.movieService.getActorsDetails().subscribe(res=>{
-      this.actorList = res['items'];
+      this.actorList = res;
     })
   }
 
@@ -138,7 +130,54 @@ search(value: string) {
   || option.lastName.toLowerCase().includes(filter));
 }
 
-  updateMovie(){
-
+clickOnAction(){
+  if (this.action == ModalFormAction.Create){
+    this.createMovie();
+  } else if (this.action == ModalFormAction.Update){
+    this.updateMovie();
   }
+}
+
+compareObjects(object1: any, object2: any) {
+  return object1 && object2 && object1.id == object2.id;
+}
+
+updateMovie(){
+  let name = this.movieForm.value.name;
+  let countryId = this.movieForm.value.country.id ? Number(this.movieForm.value.country.id) : null;
+  let country = this.movieForm.value.country.name;
+  let year = this.movieForm.value.year ? Number(this.movieForm.value.year) : null;
+  let description = this.movieForm.value.description;
+  let movieUrl = this.movieForm.value.movieUrl;
+  let imageUrl = this.movieForm.value.imageUrl;
+  let directorId = this.movieForm.value.director ? Number(this.movieForm.value.director.id) : null;
+  let actors = this.movieForm.value.actors.map((x: { id: number; })=>x.id);
+  let genres = this.movieForm.value.genres.map((x: { id: number; })=>x.id);
+
+  let movieUpdate = new MovieUpdate(this.id,name,countryId,country,year,
+    description,movieUrl,imageUrl,directorId,genres,actors);
+  
+  this.movieService.updateMovie(movieUpdate).subscribe(res=>{
+    location.reload();
+  }, error=> console.log(error));
+}
+
+createMovie(){
+  let name = this.movieForm.value.name;
+  let countryId = this.movieForm.value.country.id ? Number(this.movieForm.value.country.id) : null;
+  let country = this.movieForm.value.country.name;
+  let year = this.movieForm.value.year ? Number(this.movieForm.value.year) : null;
+  let description = this.movieForm.value.description;
+  let movieUrl = this.movieForm.value.movieUrl;
+  let imageUrl = this.movieForm.value.imageUrl;
+  let directorId = this.movieForm.value.director ? Number(this.movieForm.value.director.id) : null;
+  let actors = this.movieForm.value.actors.map(x=>x.id);
+  let genres = this.movieForm.value.genres.map(x=>x.id);
+
+  let movieCreate = new MovieCreate(name,countryId,country,year,description,movieUrl,imageUrl,directorId,actors,genres);
+  this.movieService.createMovie(movieCreate).subscribe(res=>{
+    location.reload();
+  }, error=> console.log(error));
+}
+
 }

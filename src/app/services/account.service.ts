@@ -20,8 +20,7 @@ export class AccountService {
   constructor(
     private http: HttpClient,
     @Inject(CINEMA_API_URL) private apiUrl : string,
-    private jwtHelper: JwtHelperService,
-    private location: Location
+    private jwtHelper: JwtHelperService
   ) { } 
 
   login(username: string, password: string ): Observable<Token>{

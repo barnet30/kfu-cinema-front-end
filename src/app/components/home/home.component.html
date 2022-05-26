@@ -7,8 +7,8 @@
     <form [formGroup]="filterForm" class="filter-container"> 
       <label class="filter-field-label">Год выхода</label>
       <div class="input-field">
-        <input formControlName="yearFrom" class="filter-card-input" type="number" placeholder="Начало">
-        <input formControlName="yearTo" class="filter-card-input" type="number" placeholder="Конец">
+        <input formControlName="yearFrom" class="filter-card-input" type="number" placeholder="От">
+        <input formControlName="yearTo" class="filter-card-input" type="number" placeholder="До">
       </div>
       <label class="filter-field-label">Название фильма</label>
       <div class="input-field">
@@ -25,7 +25,7 @@
       </mat-form-field>
       <mat-label class="filter-field-label">Жанры</mat-label>
       <mat-form-field floatLabel="never">
-        <mat-select formControlName="genres" [formControl]="genres" multiple placeholder="Выберите жанры">
+        <mat-select formControlName="genres" multiple placeholder="Выберите жанры">
           <mat-option *ngFor="let genre of genresList" [value]="genre.id">{{genre.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -46,7 +46,7 @@
             {{genre.name}}<a style="color: gray;" *ngIf="genre!=movie.genres[movie.genres.length - 1]">,</a>
           </p> 
         </mat-card-subtitle>
-      <p>{{movie.description}}</p>
+      <p>{{ movie.description.length > 500 ? (movie.description | slice:0:500) +'...' : (movie.description) }}</p>
     </mat-card-content>
   </mat-card>
 </div>

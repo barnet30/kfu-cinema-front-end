@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { VimeModule } from '@vime/angular';
 
 import {MatCardModule} from '@angular/material/card';
@@ -13,6 +13,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { environment } from '../environments/environment';
 import {CINEMA_API_URL} from './app-injection-tokens'
@@ -29,6 +30,10 @@ import { AuthGuard } from './guards/authGuard';
 import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { AdminMovieModalDialogComponent } from './components/admin-movie-modal-dialog/admin-movie-modal-dialog.component';
+import { AuthRoleGuard } from './guards/authRoleGuard';
+import { ConfirmationDeleteDialogComponent } from './components/confirmation-delete-dialog/confirmation-delete-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { AdministrationActorComponent } from './components/administration-actor/administration-actor.component';
 
 
 
@@ -46,7 +51,10 @@ export function tokenGetter(){
     ModalDialogComponent,
     ScrollTopComponent,
     AdministrationComponent,
-    AdminMovieModalDialogComponent
+    AdminMovieModalDialogComponent,
+    ConfirmationDeleteDialogComponent,
+    AdministrationComponent,
+    AdministrationActorComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +72,8 @@ export function tokenGetter(){
     MatFormFieldModule,
     MatSelectModule,
     MatDialogModule,
+    MatIconModule,
+    MatPaginatorModule,
     NgMultiSelectDropDownModule.forRoot(),
     
     JwtModule.forRoot({
@@ -76,7 +86,9 @@ export function tokenGetter(){
   providers: [{
     provide: CINEMA_API_URL,
     useValue: environment.cinemaApi
-  },AuthGuard],
+  },
+  AuthGuard,
+  AuthRoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
