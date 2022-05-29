@@ -1,6 +1,6 @@
-import { Genre } from "./genre";
-import { DirectorDetail } from './directorDetail';
-import { ActorDetail } from './actorDetail';
+import { Genre } from "../genre";
+import { DirectorDetail } from '../directorDetail';
+import { ActorDetail } from '../actor/actorDetail';
 
 export class MovieDetail{
     constructor(

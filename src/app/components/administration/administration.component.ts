@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { MovieItem } from '../../models/movieItem';
+import { MovieItem } from '../../models/movie/movieItem';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminMovieModalDialogComponent } from '../admin-movie-modal-dialog/admin-movie-modal-dialog.component';
@@ -8,7 +8,7 @@ import { ModalFormAction } from 'src/app/common/modalFormAction';
 import { RemoveDataType } from '../../common/removeDataType';
 import { ConfirmationDeleteDialogComponent } from '../confirmation-delete-dialog/confirmation-delete-dialog.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MovieFilterParameters } from '../../models/movieFilterParameters';
+import { MovieFilterParameters } from '../../models/movie/movieFilterParameters';
 import { of } from 'rxjs';
 
 @Component({
@@ -29,12 +29,13 @@ export class AdministrationComponent implements OnInit {
   defaultMovieFilterParams: MovieFilterParameters = new MovieFilterParameters(3,0);
 
   @ViewChild(MatTable) table: MatTable<MovieItem>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   removeDataType = RemoveDataType;
 
 
   constructor(private movieService: MovieService,
-          public dialog: MatDialog,) { }
+          public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -46,6 +47,7 @@ export class AdministrationComponent implements OnInit {
     this.movieService.getMovies(filterParams).subscribe(res=>{
       this.movies = res['items'];
       this.moviesTotal = res['total'];
+      this.paginator._intl.itemsPerPageLabel="Элементов на странице:";
     })
   }
 

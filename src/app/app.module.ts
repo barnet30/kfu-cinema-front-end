@@ -34,6 +34,10 @@ import { AuthRoleGuard } from './guards/authRoleGuard';
 import { ConfirmationDeleteDialogComponent } from './components/confirmation-delete-dialog/confirmation-delete-dialog.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AdministrationActorComponent } from './components/administration-actor/administration-actor.component';
+import { AdminActorModalDialogComponent } from './components/admin-actor-modal-dialog/admin-actor-modal-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 
@@ -54,7 +58,8 @@ export function tokenGetter(){
     AdminMovieModalDialogComponent,
     ConfirmationDeleteDialogComponent,
     AdministrationComponent,
-    AdministrationActorComponent
+    AdministrationActorComponent,
+    AdminActorModalDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,8 @@ export function tokenGetter(){
     MatDialogModule,
     MatIconModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgMultiSelectDropDownModule.forRoot(),
     
     JwtModule.forRoot({
@@ -88,7 +95,8 @@ export function tokenGetter(){
     useValue: environment.cinemaApi
   },
   AuthGuard,
-  AuthRoleGuard],
+  AuthRoleGuard,
+  MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

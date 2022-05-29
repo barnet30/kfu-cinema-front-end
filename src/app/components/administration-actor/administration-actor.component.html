@@ -2,8 +2,17 @@
     <span class="table-title">Актёры</span>
 
     <div class="demo-button-container">
-        <button mat-raised-button class="demo-button">
+        <button mat-raised-button class="demo-button" (click)="openDialog(0)">
           Создать актёра
+        </button>
+    </div>
+
+    <label for="actor-filter">Поиск по названию</label>
+    <div class="wrapper-input">
+        <input id="actor-filter" [(ngModel)]="actorFilterText" type="text" placeholder="Название...">
+        <button (click)="actorFilterText=''; applyFilter(); " *ngIf="actorFilterText" type="reset">&times;</button>
+        <button mat-raised-button class="demo-button search-btn" (click)="applyFilter()">
+            Найти
         </button>
     </div>
 
@@ -35,7 +44,7 @@
     <!-- update Column -->
     <ng-container matColumnDef="update">
         <th mat-header-cell *matHeaderCellDef>update</th>
-        <td mat-cell class="table-action-edit" *matCellDef="let element">
+        <td mat-cell class="table-action-edit" *matCellDef="let element" (click)="openDialog(element.id)">
             ред.
             <mat-icon style="transform: scale(0.9);">edit</mat-icon>
         </td>
@@ -44,7 +53,7 @@
     <!-- remove Column -->
     <ng-container matColumnDef="remove">
         <th mat-header-cell *matHeaderCellDef>remove</th>
-        <td mat-cell class="table-action-edit" *matCellDef="let element">
+        <td mat-cell class="table-action-edit" *matCellDef="let element" (click)="openConfirmationDialog(element.id, element.name+' '+element.lastName, removeDataType.Actor)">
             удалить
             <mat-icon style="transform: scale(0.9);">cancel</mat-icon>
         </td>
@@ -54,4 +63,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
+    <mat-paginator 
+        [pageSizeOptions]="[4, 10, 20]"
+        showFirstLastButtons>
+    </mat-paginator>
 </div>

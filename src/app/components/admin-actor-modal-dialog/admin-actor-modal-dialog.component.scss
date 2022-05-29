@@ -1,0 +1,8 @@
+.form-datepicker{
+    border: none;
+
+    &:focus{
+        border: none;
+        box-shadow: none;
+    }
+}

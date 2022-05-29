@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { MovieDetail } from '../../models/movieDetail';
+import { MovieDetail } from '../../models/movie/movieDetail';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Genre } from 'src/app/models/genre';
-import { ActorDetail } from '../../models/actorDetail';
+import { ActorDetail } from '../../models/actor/actorDetail';
 import { AccountService } from '../../services/account.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';

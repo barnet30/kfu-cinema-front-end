@@ -47,11 +47,15 @@ export class ConfirmationDeleteDialogComponent implements OnInit {
   }
 
   removeMovie(){
-    this.movieService.removeMovie(this.id).subscribe(res=>{});
+    this.movieService.removeMovie(this.id).subscribe(res=>{
+      location.reload();
+    });
   }
 
   removeActor(){
-
+    this.movieService.removeActor(this.id).subscribe(res=>{
+      location.reload();
+    });
   }
 
   removeGenre(){

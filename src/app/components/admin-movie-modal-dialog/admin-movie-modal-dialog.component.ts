@@ -2,14 +2,14 @@ import { Component, OnInit, Inject, AfterViewInit, AfterContentInit } from '@ang
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ModalFormAction } from 'src/app/common/modalFormAction';
-import { MovieDetail } from '../../models/movieDetail';
+import { MovieDetail } from '../../models/movie/movieDetail';
 import { MovieService } from '../../services/movie.service';
 import { CountryRef } from '../../models/countryRef';
 import { DirectorDetail } from '../../models/directorDetail';
 import { Genre } from 'src/app/models/genre';
-import { ActorDetail } from '../../models/actorDetail';
-import { MovieCreate } from '../../models/movieCreate';
-import { MovieUpdate } from '../../models/movieUpdate';
+import { ActorDetail } from '../../models/actor/actorDetail';
+import { MovieCreate } from '../../models/movie/movieCreate';
+import { MovieUpdate } from '../../models/movie/movieUpdate';
 
 export interface MovieDialogData{
   id: number | null;
@@ -45,10 +45,10 @@ export class AdminMovieModalDialogComponent implements OnInit{
     this.action = this.data.action;
 
     if(this.action == ModalFormAction.Create){
-      this.titleDialog = "Создание фильма";
+      this.titleDialog = "Добавление фильма";
       this.btnActionName = "Добавить";
     } else {
-      this.titleDialog = "Редактирование фильма";
+      this.titleDialog = "Редактирование карточки фильма";
       this.btnActionName = "Обновить";
     }
 

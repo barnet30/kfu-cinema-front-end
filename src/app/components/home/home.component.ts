@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { MovieService } from '../../services/movie.service';
 import { Page } from '../../common/table.types';
-import { MovieItem } from '../../models/movieItem';
+import { MovieItem } from '../../models/movie/movieItem';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { CountryRef } from '../../models/countryRef';
 import { Genre } from 'src/app/models/genre';
-import { MovieFilterParameters } from '../../models/movieFilterParameters';
+import { MovieFilterParameters } from '../../models/movie/movieFilterParameters';
 import { Location } from '@angular/common'
 
 

@@ -5,15 +5,17 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { CINEMA_API_URL } from '../app-injection-tokens';
 import { Observable } from 'rxjs';
 import { Page } from '../common/table.types';
-import { MovieItem } from '../models/movieItem';
+import { MovieItem } from '../models/movie/movieItem';
 import { CountryRef } from '../models/countryRef';
 import { Genre } from '../models/genre';
-import { MovieFilterParameters } from '../models/movieFilterParameters';
-import { MovieDetail } from '../models/movieDetail';
+import { MovieFilterParameters } from '../models/movie/movieFilterParameters';
+import { MovieDetail } from '../models/movie/movieDetail';
 import { DirectorDetail } from '../models/directorDetail';
-import { ActorDetail } from '../models/actorDetail';
-import { MovieCreate } from '../models/movieCreate';
-import { MovieUpdate } from '../models/movieUpdate';
+import { ActorDetail } from '../models/actor/actorDetail';
+import { MovieCreate } from '../models/movie/movieCreate';
+import { MovieUpdate } from '../models/movie/movieUpdate';
+import { ActorCreate } from '../models/actor/actorCreate';
+import { ActorUpdate } from '../models/actor/actorUpdate';
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 
@@ -49,6 +51,18 @@ export class MovieService {
     return this.http.get<MovieDetail>(`${this.apiUrl}api/cinema/movie/${id}`);
   }
 
+  createMovie(createMovieForm: MovieCreate){
+    return this.http.post<MovieDetail>(`${this.apiUrl}api/cinema/movie`,createMovieForm);
+  }
+
+  updateMovie(updateMovieForm: MovieUpdate){
+    return this.http.put<MovieDetail>(`${this.apiUrl}api/cinema/movie`,updateMovieForm);
+  }
+
+  removeMovie(id: number){
+    return this.http.delete(`${this.apiUrl}api/cinema/movie/${id}`);
+  }
+
   updateMovieRating(estimation:number, movieId:number){
     return this.http.post<any>(`${this.apiUrl}api/cinema/movie/${movieId}/rate`,{rate: estimation});
   }
@@ -65,15 +79,20 @@ export class MovieService {
     return this.http.get<ActorDetail[]>(`${this.apiUrl}api/cinema/actors`,{});
   }
 
-  createMovie(createMovieForm: MovieCreate){
-    return this.http.post<MovieDetail>(`${this.apiUrl}api/cinema/movie`,createMovieForm);
+  getActorById(id:number):Observable<ActorDetail>{
+    return this.http.get<ActorDetail>(`${this.apiUrl}api/cinema/actor/${id}`);
   }
 
-  updateMovie(updateMovieForm: MovieUpdate){
-    return this.http.put<MovieDetail>(`${this.apiUrl}api/cinema/movie`,updateMovieForm);
+  createActor(createActor: ActorCreate){
+    return this.http.post<ActorCreate>(`${this.apiUrl}api/cinema/actor`,createActor);
   }
 
-  removeMovie(id: number){
-    return this.http.delete(`${this.apiUrl}api/cinema/movie/${id}`);
+  updateActor(updateActor: ActorUpdate){
+    return this.http.put<ActorDetail>(`${this.apiUrl}api/cinema/actor`,updateActor);
   }
+
+  removeActor(id: number){
+    return this.http.delete(`${this.apiUrl}api/cinema/actor/${id}`);
+  }
+ 
 }
