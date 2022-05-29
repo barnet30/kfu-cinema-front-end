@@ -10,12 +10,14 @@ import { CountryRef } from '../models/countryRef';
 import { Genre } from '../models/genre';
 import { MovieFilterParameters } from '../models/movie/movieFilterParameters';
 import { MovieDetail } from '../models/movie/movieDetail';
-import { DirectorDetail } from '../models/directorDetail';
+import { DirectorDetail } from '../models/director/directorDetail';
 import { ActorDetail } from '../models/actor/actorDetail';
 import { MovieCreate } from '../models/movie/movieCreate';
 import { MovieUpdate } from '../models/movie/movieUpdate';
 import { ActorCreate } from '../models/actor/actorCreate';
 import { ActorUpdate } from '../models/actor/actorUpdate';
+import { DirectorCreate } from '../models/director/directorCreate';
+import { DirectorUpdate } from '../models/director/directorUpdate';
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 
@@ -31,13 +33,6 @@ export class MovieService {
     private router: Router
   ) { }
 
-  getMovies(filterParams: MovieFilterParameters | null): Observable<Page<MovieItem>>{  
-    if (filterParams){
-      return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`, filterParams);
-    }
-    return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{});
-  }
-
   getCounties(): Observable<CountryRef[]>{
     
     return this.http.get<CountryRef[]>(`${this.apiUrl}api/refbook/countries`,{});
@@ -47,8 +42,19 @@ export class MovieService {
     return this.http.get<Genre[]>(`${this.apiUrl}api/cinema/genres`,{});
   }
 
+
+
+
+
   getMovieById(id:number): Observable<MovieDetail>{
     return this.http.get<MovieDetail>(`${this.apiUrl}api/cinema/movie/${id}`);
+  }
+
+  getMovies(filterParams: MovieFilterParameters | null): Observable<Page<MovieItem>>{  
+    if (filterParams){
+      return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`, filterParams);
+    }
+    return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{});
   }
 
   createMovie(createMovieForm: MovieCreate){
@@ -63,6 +69,9 @@ export class MovieService {
     return this.http.delete(`${this.apiUrl}api/cinema/movie/${id}`);
   }
 
+
+
+
   updateMovieRating(estimation:number, movieId:number){
     return this.http.post<any>(`${this.apiUrl}api/cinema/movie/${movieId}/rate`,{rate: estimation});
   }
@@ -71,10 +80,30 @@ export class MovieService {
     return this.http.get<number|null>(`${this.apiUrl}api/cinema/rate/${movieId}`,{});
   }
 
+
+
   getDirectorsDetails(){
     return this.http.get<DirectorDetail[]>(`${this.apiUrl}api/cinema/directors`,{});
   }
+
+  getDirectorById(id: number): Observable<DirectorDetail>{
+    return this.http.get<DirectorDetail>(`${this.apiUrl}api/cinema/director/${id}`);
+  }
   
+  createDirector(createDirector: DirectorCreate){
+    return this.http.post<ActorCreate>(`${this.apiUrl}api/cinema/director`,createDirector);
+  }
+
+  updateDirector(updateDirector: DirectorUpdate){
+    return this.http.put<ActorDetail>(`${this.apiUrl}api/cinema/director`,updateDirector);
+  }
+
+  removeDirector(id: number){
+    return this.http.delete(`${this.apiUrl}api/cinema/director/${id}`);
+  }
+
+
+
   getActorsDetails(){
     return this.http.get<ActorDetail[]>(`${this.apiUrl}api/cinema/actors`,{});
   }

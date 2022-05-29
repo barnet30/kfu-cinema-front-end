@@ -63,6 +63,8 @@ export class ConfirmationDeleteDialogComponent implements OnInit {
   }
 
   removeDirector(){
-
+    this.movieService.removeDirector(this.id).subscribe(res=>{
+      location.reload();
+    })
   }
 }

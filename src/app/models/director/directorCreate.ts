@@ -1,11 +1,11 @@
-export class DirectorDetail{
+export class DirectorCreate{
     constructor(
-        public id: number,
         public name: string,
         public lastName: string,
         public imageUrl: string,
+        public countryId: number,
         public country: string,
-        public birthDate: Date,
+        public birthDate: string,
         public description: string
     ){}
 }

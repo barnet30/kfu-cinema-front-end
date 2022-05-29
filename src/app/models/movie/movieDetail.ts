@@ -1,5 +1,5 @@
 import { Genre } from "../genre";
-import { DirectorDetail } from '../directorDetail';
+import { DirectorDetail } from '../director/directorDetail';
 import { ActorDetail } from '../actor/actorDetail';
 
 export class MovieDetail{

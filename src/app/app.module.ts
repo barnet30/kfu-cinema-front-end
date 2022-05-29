@@ -37,6 +37,8 @@ import { AdministrationActorComponent } from './components/administration-actor/
 import { AdminActorModalDialogComponent } from './components/admin-actor-modal-dialog/admin-actor-modal-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AdministrationDirectorComponent } from './components/administration-director/administration-director.component';
+import { AdminDirectorModalDialogComponent } from './components/admin-director-modal-dialog/admin-director-modal-dialog.component';
 
 
 
@@ -59,7 +61,9 @@ export function tokenGetter(){
     ConfirmationDeleteDialogComponent,
     AdministrationComponent,
     AdministrationActorComponent,
-    AdminActorModalDialogComponent
+    AdminActorModalDialogComponent,
+    AdministrationDirectorComponent,
+    AdminDirectorModalDialogComponent
   ],
   imports: [
     BrowserModule,
