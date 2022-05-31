@@ -12,8 +12,7 @@ import { ConfirmationDeleteDialogComponent } from '../confirmation-delete-dialog
 @Component({
   selector: 'app-administration-director',
   templateUrl: './administration-director.component.html',
-  styleUrls: ['./administration-director.component.scss',
-            '../administration/administration.component.scss']
+  styleUrls: ['./administration-director.component.scss', '../administration/administration.component.scss']
 })
 export class AdministrationDirectorComponent implements OnInit {
 

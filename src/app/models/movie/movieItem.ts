@@ -1,4 +1,4 @@
-import { Genre } from '../genre';
+import { Genre } from '../genre/genre';
 export class MovieItem{
     constructor( 
         public id: number,

@@ -6,7 +6,7 @@ import { MovieDetail } from '../../models/movie/movieDetail';
 import { MovieService } from '../../services/movie.service';
 import { CountryRef } from '../../models/countryRef';
 import { DirectorDetail } from '../../models/director/directorDetail';
-import { Genre } from 'src/app/models/genre';
+import { Genre } from 'src/app/models/genre/genre';
 import { ActorDetail } from '../../models/actor/actorDetail';
 import { MovieCreate } from '../../models/movie/movieCreate';
 import { MovieUpdate } from '../../models/movie/movieUpdate';

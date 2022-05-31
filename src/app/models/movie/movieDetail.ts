@@ -1,4 +1,4 @@
-import { Genre } from "../genre";
+import { Genre } from "../genre/genre";
 import { DirectorDetail } from '../director/directorDetail';
 import { ActorDetail } from '../actor/actorDetail';
 

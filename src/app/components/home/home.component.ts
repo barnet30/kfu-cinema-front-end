@@ -5,7 +5,7 @@ import { Page } from '../../common/table.types';
 import { MovieItem } from '../../models/movie/movieItem';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { CountryRef } from '../../models/countryRef';
-import { Genre } from 'src/app/models/genre';
+import { Genre } from 'src/app/models/genre/genre';
 import { MovieFilterParameters } from '../../models/movie/movieFilterParameters';
 import { Location } from '@angular/common'
 

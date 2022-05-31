@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Page } from '../common/table.types';
 import { MovieItem } from '../models/movie/movieItem';
 import { CountryRef } from '../models/countryRef';
-import { Genre } from '../models/genre';
+import { Genre } from '../models/genre/genre';
 import { MovieFilterParameters } from '../models/movie/movieFilterParameters';
 import { MovieDetail } from '../models/movie/movieDetail';
 import { DirectorDetail } from '../models/director/directorDetail';
@@ -18,6 +18,7 @@ import { ActorCreate } from '../models/actor/actorCreate';
 import { ActorUpdate } from '../models/actor/actorUpdate';
 import { DirectorCreate } from '../models/director/directorCreate';
 import { DirectorUpdate } from '../models/director/directorUpdate';
+import { GenreCreate } from '../models/genre/genreCreate';
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
 
@@ -38,12 +39,27 @@ export class MovieService {
     return this.http.get<CountryRef[]>(`${this.apiUrl}api/refbook/countries`,{});
   }
 
+
+  
   getGenres(): Observable<Genre[]>{
     return this.http.get<Genre[]>(`${this.apiUrl}api/cinema/genres`,{});
   }
 
+  getGenreById(genreId: number):Observable<Genre>{
+    return this.http.get<Genre>(`${this.apiUrl}api/cinema/genre/${genreId}`);
+  }
 
+  createGenre(createGenre: GenreCreate){
+    return this.http.post<Genre>(`${this.apiUrl}api/cinema/genre`,createGenre);
+  }
 
+  updateGenre(updateGenre: Genre){
+    return this.http.put<Genre>(`${this.apiUrl}api/cinema/genre`,updateGenre);
+  }
+
+  removeGenre(id: number){
+    return this.http.delete(`${this.apiUrl}api/cinema/genre/${id}`);
+  }
 
 
   getMovieById(id:number): Observable<MovieDetail>{

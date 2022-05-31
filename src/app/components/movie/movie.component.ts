@@ -3,7 +3,7 @@ import { MovieService } from '../../services/movie.service';
 import { MovieDetail } from '../../models/movie/movieDetail';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Genre } from 'src/app/models/genre';
+import { Genre } from 'src/app/models/genre/genre';
 import { ActorDetail } from '../../models/actor/actorDetail';
 import { AccountService } from '../../services/account.service';
 import { MatDialog } from '@angular/material/dialog';
