@@ -1,0 +1,55 @@
+<mat-dialog-content>
+    <form [formGroup]="accountForm" (ngSubmit)="updateRoles()" class="card">
+        <div class="card-content">
+            <span class="card-title">Обновить роли</span>
+
+            <div *ngIf="this.account" class="input-field">
+                <input
+                [value]="account.username"
+                id="username"
+                type="text"
+                [disabled]="true"
+                >
+                <label for="username" class="active">Имя пользователя:</label>
+            </div>
+
+            <div *ngIf="this.account" class="input-field">
+                <label for="roles" class="active">Роли пользователя</label>
+
+                <p>
+                    <label>
+                        <input
+                        type="checkbox"
+                        id="check-user"
+                        [checked]="account.roles.includes(role.User)"
+                        (change)="onCheckChange($event)"
+                        [value]="role.User"
+                        >   
+                    <span for="check-user">User</span>
+                    </label>
+                </p>
+                
+                <p>
+                    <label>
+                        <input
+                        type="checkbox"
+                        id="check-admin"
+                        [checked]="account.roles.includes(role.Admin)"
+                        [value]="role.Admin"
+                        (change)="onCheckChange($event)"
+                        >
+                        <span for="check-admin">Admin</span>
+                    </label>
+                </p>
+
+            </div>
+        </div>
+      <div class="card-action">
+          <button 
+          type="submit"
+          class="modal-action btn waves-effect">
+          Обновить
+          </button>
+      </div>
+    </form>  
+  </mat-dialog-content>  

@@ -7,9 +7,9 @@
         </button>
     </div>
 
-    <label for="movie-filter">Поиск по названию</label>
+    <label for="movie-filter">Поиск</label>
     <div class="wrapper-input">
-        <input id="movie-filter" [(ngModel)]="movieFilterText" type="text" placeholder="Название...">
+        <input id="movie-filter" [(ngModel)]="movieFilterText" type="text" placeholder="...">
         <button (click)="movieFilterText='' " *ngIf="movieFilterText" type="reset">&times;</button>
         <button mat-raised-button class="demo-button search-btn" (click)="applyFilter()">
             Найти
@@ -77,3 +77,4 @@
 <app-administration-actor></app-administration-actor>
 <app-administration-director></app-administration-director>
 <app-administration-genre></app-administration-genre>
+<app-administration-user></app-administration-user>

@@ -7,9 +7,9 @@
         </button>
     </div>
 
-    <label for="director-filter">Поиск по имени и фамилии</label>
+    <label for="director-filter">Поиск</label>
     <div class="wrapper-input">
-        <input id="director-filter" [(ngModel)]="directorFilterText" type="text" placeholder="Питер Джексон...">
+        <input id="director-filter" [(ngModel)]="directorFilterText" type="text" placeholder="...">
         <button (click)="directorFilterText=''; applyFilter(); " *ngIf="directorFilterText" type="reset">&times;</button>
         <button mat-raised-button class="demo-button search-btn" (click)="applyFilter()">
             Найти

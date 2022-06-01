@@ -14,7 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { environment } from '../environments/environment';
 import {CINEMA_API_URL} from './app-injection-tokens'
 import {JwtModule} from '@auth0/angular-jwt'
@@ -41,6 +41,8 @@ import { AdministrationDirectorComponent } from './components/administration-dir
 import { AdminDirectorModalDialogComponent } from './components/admin-director-modal-dialog/admin-director-modal-dialog.component';
 import { AdministrationGenreComponent } from './components/administration-genre/administration-genre.component';
 import { AdminGenreModalDialogComponent } from './components/admin-genre-modal-dialog/admin-genre-modal-dialog.component';
+import { AdministrationUserComponent } from './components/administration-user/administration-user.component';
+import { AdminUserModalDialogComponent } from './components/admin-user-modal-dialog/admin-user-modal-dialog.component';
 
 
 
@@ -67,7 +69,9 @@ export function tokenGetter(){
     AdministrationDirectorComponent,
     AdminDirectorModalDialogComponent,
     AdministrationGenreComponent,
-    AdminGenreModalDialogComponent
+    AdminGenreModalDialogComponent,
+    AdministrationUserComponent,
+    AdminUserModalDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,7 @@ export function tokenGetter(){
     MatPaginatorModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgMultiSelectDropDownModule.forRoot(),
+    MatCheckboxModule,
     
     JwtModule.forRoot({
       config: {

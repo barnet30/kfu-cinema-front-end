@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RemoveDataType } from '../../common/removeDataType';
 import { MovieService } from '../../services/movie.service';
+import { AccountService } from '../../services/account.service';
 
 export interface MovieDialogData{
   id: number | null;
@@ -22,7 +23,8 @@ export class ConfirmationDeleteDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ConfirmationDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: MovieDialogData,
-    private movieService: MovieService) { }
+    private movieService: MovieService,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
 
@@ -43,7 +45,15 @@ export class ConfirmationDeleteDialogComponent implements OnInit {
       this.removeGenre();
     } else if (this.dataType == RemoveDataType.Director){
       this.removeDirector();
+    } else if (this.dataType == RemoveDataType.Account){
+      this.removeAccount();
     }
+  }
+
+  removeAccount() {
+    this.accountService.removeAccountById(this.id).subscribe(res=>{
+      location.reload();
+    })
   }
 
   removeMovie(){

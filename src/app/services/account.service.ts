@@ -6,6 +6,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { Token } from '../models/token';
 import { Location } from '@angular/common'
+import { Account } from '../models/account/Account';
+import { Role } from '../common/role';
 
 
 export const ACCESS_TOKEN_KEY = 'cinema_access_token';
@@ -73,5 +75,22 @@ export class AccountService {
     let jwt = this.jwtHelper.decodeToken(localStorage.getItem(ACCESS_TOKEN_KEY));
     let roles = jwt['role'];  
     return roles.includes('Admin');
+  }
+
+
+  getAccounts(): Observable<Account[]> {
+    return this.http.get<Account[]>(`${this.apiUrl}api/account/accounts`);
+  } 
+
+  getAccountById(id: number): Observable<Account>{
+    return this.http.get<Account>(`${this.apiUrl}api/account/${id}`);
+  }
+
+  removeAccountById(id: number){
+    return this.http.delete(`${this.apiUrl}api/account/${id}`);
+  }
+
+  updateRoles(id:number, roles: Role[]){
+    return this.http.patch(`${this.apiUrl}api/account/${id}/roles`, roles);
   }
 }
