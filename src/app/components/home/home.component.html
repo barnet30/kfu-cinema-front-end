@@ -1,10 +1,75 @@
-<aside>
+<div class="home-content">
+
+  <div class="movie-items">
+    <div *ngFor="let movie of movies">
+      <mat-card class="movie-item-card">
+        <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}"
+          [routerLink]="['movie', movie.id]">
+        <mat-card-content class="movie-item-conent">
+          <mat-card-title [routerLink]="['movie', movie.id]">{{movie.name}}</mat-card-title>
+          <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
+          <mat-card-subtitle>
+            <p style="display: inline;" *ngFor="let genre of movie.genres">
+              {{genre.name}}<a style="color: gray;" *ngIf="genre!=movie.genres[movie.genres.length - 1]">,</a>
+            </p>
+          </mat-card-subtitle>
+          <p>{{ movie.description.length > 500 ? (movie.description | slice:0:500) +'...' : (movie.description) }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div style="width: auto; margin-left: auto; margin-right: auto; display: inline-flex;">
+      <ul class="pagination">
+        <li style="padding: 0px 0px;" [ngClass]="activePage==1 ? 'disabled' : 'null'">
+          <a (click)="toFirstPage()">
+            <i class="material-icons">first_page</i>
+          </a>
+        </li>
+        <li style="padding: 0px 0px;" [ngClass]="activePage==1 ? 'disabled' : 'null'">
+          <a (click)="toPreviousPage()">
+            <i class="material-icons">chevron_left</i>
+          </a>
+        </li>
+
+        <li *ngFor="let pageNumber of pageNumbers" [ngClass]="pageNumber == activePage ? 'active' : 'null'">
+          <a (click)="pageChangeClick(pageNumber)">{{pageNumber}}</a>
+        </li>
+
+        <li style="padding: 0px 0px;" [ngClass]="activePage==totalPages ? 'disabled' : 'null'">
+          <a (click)="toNextPage()">
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+        <li style="padding: 0px 0px;" [ngClass]="activePage==totalPages ? 'disabled' : 'null'">
+          <a (click)="toLastPage()">
+            <i class="material-icons">last_page</i>
+          </a>
+        </li>
+
+      </ul>
+      <div style="margin-top: auto; margin-bottom:auto; display: inline-flex;">
+        <label style="font-size: 1.1rem; padding-top:4%; width: 132px; height: auto;">Показывать по: </label>
+        <select (change)="selectPageSize()" class="page-option-select" [(ngModel)]="pageSize">
+          <option *ngFor="let size of pageSizeOptions" [ngValue]="size">
+            {{size}}
+          </option>
+        </select>
+      </div>
+      
+    </div>
+  </div>
+
   <mat-card class="filter-card">
     <mat-card-title class="filter-card-title" style="color: white; cursor: default; text-decoration:unset !important;">
       <img src="assets/icons/icon-sort-settings.svg" class="svg-filter">
       Фильтр
     </mat-card-title>
-    <form [formGroup]="filterForm" class="filter-container"> 
+    <form [formGroup]="filterForm" class="filter-container">
+      <mat-label class="filter-field-label">Сортировать по:</mat-label>
+      <mat-form-field floatLabel="never">
+        <mat-select onchange="selectSortColumn($event)"  formControlName="sortColumn">
+          <mat-option (click)="selectSortColumn(sortColumn.key)" *ngFor="let sortColumn of sortColumns | keyvalue" [value]="sortColumn.key">{{sortColumn.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <label class="filter-field-label">Год выхода</label>
       <div class="input-field">
         <input formControlName="yearFrom" class="filter-card-input" type="number" placeholder="От">
@@ -29,41 +94,12 @@
           <mat-option *ngFor="let genre of genresList" [value]="genre.id">{{genre.name}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <a class="filter-field-label clear-filter-btn" (click)="removeFilters()">Очистить</a>
       <button (click)="applyFilters()" mat-raised-button class="filter-apply-btn">Применить</button>
     </form>
   </mat-card>
-</aside>
 
-
-<div style="margin-top: 50px; margin-left: 0px" *ngFor="let movie of movies">
-  <mat-card class="movie-item-card">
-    <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}" [routerLink]="['movie', movie.id]">
-    <mat-card-content class="movie-item-conent">
-      <mat-card-title [routerLink]="['movie', movie.id]">{{movie.name}}</mat-card-title>
-      <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
-        <mat-card-subtitle>
-          <p style="display: inline;" *ngFor="let genre of movie.genres">
-            {{genre.name}}<a style="color: gray;" *ngIf="genre!=movie.genres[movie.genres.length - 1]">,</a>
-          </p> 
-        </mat-card-subtitle>
-      <p>{{ movie.description.length > 500 ? (movie.description | slice:0:500) +'...' : (movie.description) }}</p>
-    </mat-card-content>
-  </mat-card>
 </div>
-
-
-<!-- Пагинация -->
-<!-- <div style="position: ;">
-  <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
-</div> -->
 
 
 <app-scroll-top></app-scroll-top>
