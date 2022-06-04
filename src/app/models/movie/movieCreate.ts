@@ -1,3 +1,4 @@
+import { Category } from '../../common/category';
 export class MovieCreate{
     constructor(
         public name: string,
@@ -8,6 +9,7 @@ export class MovieCreate{
         public movieUrl: string,
         public imageUrl: string,
         public directorId: number,
+        public category: Category,
         public actors: number[],
         public genres: number[]
     ) {}

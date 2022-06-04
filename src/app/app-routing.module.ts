@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component:LoginPageComponent},
   { path: 'register', component: RegistrationPageComponent},
   { path: 'movie/:id', component: MovieDetailComponent},
+  { path: 'cartoon/:id', component: MovieDetailComponent},
   { path: 'administration', component: AdministrationComponent, canActivate: [AuthGuard, AuthRoleGuard]},
   
   // otherwise redirect to home

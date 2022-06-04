@@ -1,22 +1,22 @@
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MovieService } from '../../services/movie.service';
-import { MovieItem } from '../../models/movie/movieItem';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AdminMovieModalDialogComponent } from '../admin-movie-modal-dialog/admin-movie-modal-dialog.component';
-import { ModalFormAction } from 'src/app/common/modalFormAction';
-import { RemoveDataType } from '../../common/removeDataType';
-import { ConfirmationDeleteDialogComponent } from '../confirmation-delete-dialog/confirmation-delete-dialog.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MovieFilterParameters } from '../../models/movie/movieFilterParameters';
-import { Category } from '../../common/category';
+import { MatTable } from '@angular/material/table';
+import { Category } from 'src/app/common/category';
+import { ModalFormAction } from 'src/app/common/modalFormAction';
+import { RemoveDataType } from 'src/app/common/removeDataType';
+import { MovieFilterParameters } from 'src/app/models/movie/movieFilterParameters';
+import { MovieService } from 'src/app/services/movie.service';
+import { MovieItem } from '../../models/movie/movieItem';
+import { AdminMovieModalDialogComponent } from '../admin-movie-modal-dialog/admin-movie-modal-dialog.component';
+import { ConfirmationDeleteDialogComponent } from '../confirmation-delete-dialog/confirmation-delete-dialog.component';
 
 @Component({
-  selector: 'app-administration',
-  templateUrl: './administration.component.html',
-  styleUrls: ['./administration.component.scss']
+  selector: 'app-administration-cartoon',
+  templateUrl: './administration-cartoon.component.html',
+  styleUrls: ['./administration-cartoon.component.scss', '../administration/administration.component.scss']
 })
-export class AdministrationComponent implements OnInit {
+export class AdministrationCartoonComponent implements OnInit {
 
   movieFilterParameters: MovieFilterParameters = null;
   movieTablePageEvent: PageEvent;
@@ -44,7 +44,7 @@ export class AdministrationComponent implements OnInit {
   }
 
   getMovies(filterParams: MovieFilterParameters){
-    this.movieService.getMovies(filterParams).subscribe(res=>{
+    this.movieService.getCartoons(filterParams).subscribe(res=>{
       this.movies = res['items'];
       this.moviesTotal = res['total'];
       this.paginator._intl.itemsPerPageLabel="Элементов на странице:";
@@ -109,4 +109,5 @@ export class AdministrationComponent implements OnInit {
 
     return "none";
   }
+
 }

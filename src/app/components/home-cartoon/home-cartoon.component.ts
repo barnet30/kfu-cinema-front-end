@@ -57,7 +57,7 @@ export class HomeCartoonComponent implements OnInit {
   }
 
   movieNavigate(movieId:number){
-    this.router.navigate(['movie', movieId]);
+    this.router.navigate(['cartoon', movieId]);
   }
 
   getAllMovies() {

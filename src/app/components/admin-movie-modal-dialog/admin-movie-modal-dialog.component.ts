@@ -10,6 +10,7 @@ import { Genre } from 'src/app/models/genre/genre';
 import { ActorDetail } from '../../models/actor/actorDetail';
 import { MovieCreate } from '../../models/movie/movieCreate';
 import { MovieUpdate } from '../../models/movie/movieUpdate';
+import { CategoryRef } from '../../models/categoryRef';
 
 export interface MovieDialogData{
   id: number | null;
@@ -33,6 +34,7 @@ export class AdminMovieModalDialogComponent implements OnInit{
   directorList: DirectorDetail[];
   genreList: Genre[];
   actorList: ActorDetail[];
+  categoryList: CategoryRef[];
 
   movieForm: FormGroup;
 
@@ -56,6 +58,7 @@ export class AdminMovieModalDialogComponent implements OnInit{
     this.getDirectors();
     this.getGenres();
     this.getActors();
+    this.getCategories();
 
     this.movieForm = new FormGroup({
       id: new FormControl(null),
@@ -65,12 +68,17 @@ export class AdminMovieModalDialogComponent implements OnInit{
       description: new FormControl(null),
       movieUrl: new FormControl(null),
       imageUrl: new FormControl(null),
+      category: new FormControl(null),
       director: new FormControl(null),
       genres: new FormControl(null),
       actors: new FormControl(null)
     });
 
     this.getMovieDetail(this.id);
+  }
+
+  getCategories() {
+    this.categoryList = [new CategoryRef(0,"Фильм"), new CategoryRef(1,"Мультфильм"), new CategoryRef(2,"Сериал")];
   }
 
   onNoClick(): void {
@@ -86,6 +94,7 @@ export class AdminMovieModalDialogComponent implements OnInit{
         this.movie = res;
         this.movieForm.patchValue(res);
         this.movieForm.patchValue({country:{id:res.countryId, name:res.country}});
+        this.movieForm.patchValue({category:{id: res.category, name: ""}});
       });
     }
   }
@@ -153,9 +162,11 @@ updateMovie(){
   let directorId = this.movieForm.value.director ? Number(this.movieForm.value.director.id) : null;
   let actors = this.movieForm.value.actors.map((x: { id: number; })=>x.id);
   let genres = this.movieForm.value.genres.map((x: { id: number; })=>x.id);
+  let category = this.movieForm.value.category.id != null || this.movieForm.value.category.id != undefined ? 
+        Number(this.movieForm.value.category.id) : null;
 
   let movieUpdate = new MovieUpdate(this.id,name,countryId,country,year,
-    description,movieUrl,imageUrl,directorId,genres,actors);
+    description,movieUrl,imageUrl, category, directorId,genres,actors);
   
   this.movieService.updateMovie(movieUpdate).subscribe(res=>{
     location.reload();
@@ -173,8 +184,9 @@ createMovie(){
   let directorId = this.movieForm.value.director ? Number(this.movieForm.value.director.id) : null;
   let actors = this.movieForm.value.actors.map(x=>x.id);
   let genres = this.movieForm.value.genres.map(x=>x.id);
+  let category = this.movieForm.value.category.id ? Number(this.movieForm.value.category.id) : null;
 
-  let movieCreate = new MovieCreate(name,countryId,country,year,description,movieUrl,imageUrl,directorId,actors,genres);
+  let movieCreate = new MovieCreate(name,countryId,country,year,description,movieUrl,imageUrl, directorId, category, actors,genres);
   this.movieService.createMovie(movieCreate).subscribe(res=>{
     location.reload();
   }, error=> console.log(error));

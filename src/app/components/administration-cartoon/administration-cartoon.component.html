@@ -1,9 +1,9 @@
 <div id="movie-table" class="table" >
 
-    <span class="table-title">Фильмы</span>
+    <span class="table-title">Мультфильмы</span>
     <div class="demo-button-container">
         <button mat-raised-button class="demo-button" (click)="openDialog(0)">
-          Добавить фильм
+          Добавить мультфильм
         </button>
     </div>
 
@@ -15,10 +15,8 @@
             Найти
         </button>
     </div>
-    
      
     <table mat-table [dataSource]="movies">
-
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -79,8 +77,3 @@
         >
     </mat-paginator>
 </div>
-<app-administration-cartoon></app-administration-cartoon>
-<app-administration-actor></app-administration-actor>
-<app-administration-director></app-administration-director>
-<app-administration-genre></app-administration-genre>
-<app-administration-user></app-administration-user>

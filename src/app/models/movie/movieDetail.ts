@@ -1,6 +1,7 @@
 import { Genre } from "../genre/genre";
 import { DirectorDetail } from '../director/directorDetail';
 import { ActorDetail } from '../actor/actorDetail';
+import { Category } from "src/app/common/category";
 
 export class MovieDetail{
     constructor(
@@ -15,6 +16,7 @@ export class MovieDetail{
         public rating: number,
         public estimationAmount: number,
         public genres: Genre[],
+        public category: Category,
         public director: DirectorDetail,
         public actors: ActorDetail[]) {}
 }

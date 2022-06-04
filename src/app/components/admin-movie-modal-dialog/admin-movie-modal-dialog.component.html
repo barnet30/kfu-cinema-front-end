@@ -14,23 +14,22 @@
   
         <mat-form-field>
           <mat-label>Страна</mat-label>
-          <div *ngIf="this.movie">
             <mat-select name="country" formControlName="country" [compareWith]="compareObjects">
               <mat-option *ngFor="let country of countryList" [value]="country">
                 {{country.name}}
               </mat-option>
             </mat-select>
-          </div>
-  
-          <div *ngIf="!this.movie">
-            <mat-select formControlName="country" name="country">
-              <mat-option *ngFor="let country of countryList" [value]="country">
-                {{country.name}}
-              </mat-option>
-            </mat-select>
-          </div>
         </mat-form-field>
   
+        <mat-form-field>
+          <mat-label>Категория</mat-label>
+            <mat-select name="category" formControlName="category" [compareWith]="compareObjects">
+              <mat-option *ngFor="let category of categoryList" [value]="category">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <div class="input-field">
             <input 
             formControlName="year"

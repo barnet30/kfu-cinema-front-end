@@ -1,3 +1,4 @@
+import { Category } from 'src/app/common/category';
 import { Genre } from '../genre/genre';
 export class MovieItem{
     constructor( 
@@ -8,6 +9,7 @@ export class MovieItem{
         public description: string,
         public imageUrl: string,
         public createdAt: Date,
+        public category: Category,
         public genres: Genre[]) {}
 
 }

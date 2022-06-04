@@ -1,3 +1,5 @@
+import { Category } from "src/app/common/category";
+
 export class MovieUpdate{
     constructor(
         public id: number,
@@ -8,6 +10,7 @@ export class MovieUpdate{
         public description: string,
         public movieUrl: string,
         public imageUrl: string,
+        public category: Category,
         public directorId: number,
         public genres: number[],
         public actors: number[]) {}
