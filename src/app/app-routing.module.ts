@@ -7,9 +7,12 @@ import { MovieDetailComponent } from './components/movie/movie.component';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { AuthGuard } from './guards/authGuard';
 import { AuthRoleGuard } from './guards/authRoleGuard';
+import { HomeCartoonComponent } from './components/home-cartoon/home-cartoon.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
+  { path: 'movies', component:HomeComponent},
+  { path: 'cartoons', component:HomeCartoonComponent},
   { path: 'login', component:LoginPageComponent},
   { path: 'register', component: RegistrationPageComponent},
   { path: 'movie/:id', component: MovieDetailComponent},

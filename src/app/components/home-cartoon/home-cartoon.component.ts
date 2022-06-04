@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
-import { MovieService } from '../../services/movie.service';
-import { Page, SortingEnum } from '../../common/table.types';
-import { MovieItem } from '../../models/movie/movieItem';
 import { FormControl, FormGroup } from '@angular/forms';
-import { CountryRef } from '../../models/countryRef';
+import { Router } from '@angular/router';
+import { SortingEnum } from 'src/app/common/table.types';
+import { CountryRef } from 'src/app/models/countryRef';
 import { Genre } from 'src/app/models/genre/genre';
-import { MovieFilterParameters } from '../../models/movie/movieFilterParameters';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { MovieFilterParameters } from 'src/app/models/movie/movieFilterParameters';
+import { MovieItem } from 'src/app/models/movie/movieItem';
+import { AccountService } from 'src/app/services/account.service';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-home-cartoon',
+  templateUrl: './home-cartoon.component.html',
+  styleUrls: ['./home-cartoon.component.scss', '../home/home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeCartoonComponent implements OnInit {
   public movies: MovieItem[];
   public total: number;
   public countries: CountryRef[];
@@ -38,7 +36,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private auth: AccountService,
     private movieService: MovieService,
-    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -65,7 +62,7 @@ export class HomeComponent implements OnInit {
 
   getAllMovies() {
     this.movieFilter = new MovieFilterParameters(this.pageSize, 0, "uploaddate", this.sortOrder.DESC);
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
       this.total = res['total'];
       this.filterForm.patchValue({ sortColumn: "uploaddate" });
@@ -225,4 +222,5 @@ export class HomeComponent implements OnInit {
       this.movies = res['items'];
     });
   }
+
 }

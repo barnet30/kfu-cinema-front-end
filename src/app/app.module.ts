@@ -43,6 +43,7 @@ import { AdministrationGenreComponent } from './components/administration-genre/
 import { AdminGenreModalDialogComponent } from './components/admin-genre-modal-dialog/admin-genre-modal-dialog.component';
 import { AdministrationUserComponent } from './components/administration-user/administration-user.component';
 import { AdminUserModalDialogComponent } from './components/admin-user-modal-dialog/admin-user-modal-dialog.component';
+import { HomeCartoonComponent } from './components/home-cartoon/home-cartoon.component';
 
 
 
@@ -71,7 +72,8 @@ export function tokenGetter(){
     AdministrationGenreComponent,
     AdminGenreModalDialogComponent,
     AdministrationUserComponent,
-    AdminUserModalDialogComponent
+    AdminUserModalDialogComponent,
+    HomeCartoonComponent
   ],
   imports: [
     BrowserModule,

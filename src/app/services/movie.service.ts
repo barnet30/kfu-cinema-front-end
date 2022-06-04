@@ -73,6 +73,13 @@ export class MovieService {
     return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/movies`,{});
   }
 
+  getCartoons(filterParams: MovieFilterParameters | null): Observable<Page<MovieItem>>{  
+    if (filterParams){
+      return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/cartoons`, filterParams);
+    }
+    return this.http.post<Page<MovieItem>>(`${this.apiUrl}api/cinema/cartoons`,{});
+  }
+
   createMovie(createMovieForm: MovieCreate){
     return this.http.post<MovieDetail>(`${this.apiUrl}api/cinema/movie`,createMovieForm);
   }
