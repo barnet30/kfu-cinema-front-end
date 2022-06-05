@@ -26,7 +26,7 @@ export class AdministrationCartoonComponent implements OnInit {
   limit: number;
   displayedColumns: string[] = ['id', 'name', 'country', 'category', 'createdAt', 'update', 'remove'];
 
-  defaultMovieFilterParams: MovieFilterParameters = new MovieFilterParameters(3,0);
+  defaultMovieFilterParams: MovieFilterParameters = new MovieFilterParameters(5,0);
 
   @ViewChild(MatTable) table: MatTable<MovieItem>;
   @ViewChild(MatPaginator) paginator: MatPaginator;

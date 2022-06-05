@@ -206,7 +206,7 @@ mat-card-title:hover {
   margin-right: 15%;
 }
 
-.page-option-select{
+.page-option-select {
   display: inline;
   font-size: 18px;
   height: auto;
@@ -214,14 +214,44 @@ mat-card-title:hover {
   text-align: center;
 }
 
-.clear-filter-btn{
-  color: rgb(52, 58, 64);;
+.clear-filter-btn {
+  color: rgb(52, 58, 64);
+  ;
   font-weight: 500;
   margin-bottom: 18px;
   padding-left: 16px;
   margin-left: 50px;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
+}
+
+.rating {
+  position: absolute;
+  display: block;
+  top: 6%;
+  left: 8px;
+  background-color: #ffd400;
+  text-align: center;
+  width: 10%;
+  height: auto;
+  font-size: 18px;
+  border: 1px solid rgb(30, 27, 27);
+  box-shadow: 1px 1px 2px #292929;
+
+  // background: -moz-linear-gradient(top, #e3e3e3, #c8c8c8);
+  // background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#c8c8c8));
+  // padding: 10px 20px;
+  // margin-left: -20px;
+  // margin-top: 0;
+  // position: relative;
+  // width: 70%;
+  // -moz-box-shadow: 1px 1px 3px #292929;
+  // -webkit-box-shadow: 1px 1px 3px #292929;
+  // box-shadow: 1px 1px 3px #292929;
+  // color: #454545;
+  // text-shadow: 0 1px 0 white;
+
+  
 }

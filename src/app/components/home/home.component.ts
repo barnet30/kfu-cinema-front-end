@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
       this.total = res['total'];
       this.filterForm.patchValue({ sortColumn: "uploaddate" });
       this.activeSortColumn = "uploaddate";
-      this.totalPages = Math.trunc(this.total / this.pageSize) + 1;
+      this.totalPages = Math.ceil(this.total / this.pageSize);
 
       if (this.totalPages < 7) {
         this.pageNumbers = Array.from({ length: this.totalPages }, (_, i) => i + 1);
@@ -137,6 +137,11 @@ export class HomeComponent implements OnInit {
     this.movieFilter.offset = this.activePage - 1;
     this.movieService.getMovies(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
+      window.scroll({ 
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+      });
     });
   }
 

@@ -5,6 +5,12 @@
       <mat-card class="movie-item-card">
         <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}"
         (click)="movieNavigate(movie.id)">
+        <div *ngIf="movie.rating != 0" class="rating">
+          <mat-icon style="vertical-align: middle;">star</mat-icon> 
+          <span style="vertical-align: -3px;">
+          {{movie.rating}}
+        </span>
+      </div>
         <mat-card-content class="movie-item-conent">
           <mat-card-title (click)="movieNavigate(movie.id)">{{movie.name}}</mat-card-title>
           <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>

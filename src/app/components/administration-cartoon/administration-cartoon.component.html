@@ -71,7 +71,7 @@
     </table>
     <mat-paginator 
         [length]="moviesTotal"
-        [pageSizeOptions]="[3,10]"
+        [pageSizeOptions]="[5,10,15]"
         (page)="movieTablePageEvent = $event; onPaginateChange($event)"
         showFirstLastButtons 
         >

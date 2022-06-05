@@ -10,6 +10,7 @@ export class MovieItem{
         public imageUrl: string,
         public createdAt: Date,
         public category: Category,
+        public rating: number,
         public genres: Genre[]) {}
 
 }

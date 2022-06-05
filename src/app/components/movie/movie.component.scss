@@ -84,19 +84,19 @@ span:first-of-type{
 	content: '★';
 }
 .rating-area > input:checked ~ label {
-	color: gold;
+	color: #ffd400;
 	text-shadow: 1px 1px #c60;
 }
 .rating-area:not(:checked) > label:hover,
 .rating-area:not(:checked) > label:hover ~ label {
-	color: gold;
+	color: #ffd400;
 }
 .rating-area > input:checked + label:hover,
 .rating-area > input:checked + label:hover ~ label,
 .rating-area > input:checked ~ label:hover,
 .rating-area > input:checked ~ label:hover ~ label,
 .rating-area > label:hover ~ input:checked ~ label {
-	color: gold;
+	color: #ffd400;
 	text-shadow: 1px 1px goldenrod;
 }
 .rate-area > label:active {
@@ -116,7 +116,7 @@ span:first-of-type{
     padding: 0;
     font-size: 48px;
     line-height: 48px;
-    color: goldenrod;
+    color: #ffd400;
     text-shadow: 1px 1px #bbb;
     cursor: default;
 }
