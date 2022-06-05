@@ -4,13 +4,13 @@
     <div *ngFor="let movie of movies">
       <mat-card class="movie-item-card">
         <img mat-card-xl-image class="movie-item-image" src="{{movie.imageUrl}}" alt="{{movie.name}}"
-        (click)="movieNavigate(movie.id)">
+          (click)="movieNavigate(movie.id)">
         <div *ngIf="movie.rating != 0" class="rating">
-          <mat-icon style="vertical-align: middle;">star</mat-icon> 
+          <mat-icon style="vertical-align: middle;">star</mat-icon>
           <span style="vertical-align: -3px;">
-          {{movie.rating}}
-        </span>
-      </div>
+            {{movie.rating}}
+          </span>
+        </div>
         <mat-card-content class="movie-item-conent">
           <mat-card-title (click)="movieNavigate(movie.id)">{{movie.name}}</mat-card-title>
           <mat-card-subtitle style="margin-bottom: 20px;">{{movie.country}}, {{movie.year}}</mat-card-subtitle>
@@ -60,7 +60,7 @@
           </option>
         </select>
       </div>
-      
+
     </div>
   </div>
 
@@ -72,8 +72,9 @@
     <form [formGroup]="filterForm" class="filter-container">
       <mat-label class="filter-field-label">Сортировать по:</mat-label>
       <mat-form-field floatLabel="never">
-        <mat-select onchange="selectSortColumn($event)"  formControlName="sortColumn">
-          <mat-option (click)="selectSortColumn(sortColumn.key)" *ngFor="let sortColumn of sortColumns | keyvalue" [value]="sortColumn.key">{{sortColumn.value}}</mat-option>
+        <mat-select onchange="selectSortColumn($event)" formControlName="sortColumn">
+          <mat-option (click)="selectSortColumn(sortColumn.key)" *ngFor="let sortColumn of sortColumns | keyvalue"
+            [value]="sortColumn.key">{{sortColumn.value}}</mat-option>
         </mat-select>
       </mat-form-field>
       <label class="filter-field-label">Год выхода</label>
