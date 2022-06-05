@@ -66,6 +66,10 @@ export class AccountService {
     return this.token;
   }
 
+  getTokenFromLocalStorage(): string{
+    return localStorage.getItem(ACCESS_TOKEN_KEY);
+  }
+
   getUsername(): string {
     let jwt = this.jwtHelper.decodeToken(localStorage.getItem(ACCESS_TOKEN_KEY));
     return jwt['username'];
