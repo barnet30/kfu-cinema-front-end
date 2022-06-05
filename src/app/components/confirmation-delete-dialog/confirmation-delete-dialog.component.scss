@@ -1,0 +1,22 @@
+.button{
+    width: 120px;
+    background-color: rgb(52,58,64);
+    color: white;
+    height: 40px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.button:last-child{
+    margin-right: 0;
+}
+
+mat-dialog-actions {
+    &[align='end'] {
+      justify-content: flex-end;
+    }
+  
+    &[align='center'] {
+      justify-content: center;
+    }
+  }

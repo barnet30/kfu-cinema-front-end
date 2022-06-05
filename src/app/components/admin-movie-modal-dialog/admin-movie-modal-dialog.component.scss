@@ -1,0 +1,43 @@
+.card{
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    margin-right: 0px !important;
+}
+
+.card-title{
+    font-size: 24px;
+    margin-bottom: 24px !important;
+}
+
+.mat-form-field{
+    width: 100% !important;
+    padding: 0 !important;
+    display: block !important;
+    margin-top: 1rem !important;
+ }
+ 
+ mat-select{
+     margin-top: 6px !important;
+     margin-bottom: 10px !important;
+ }
+
+textarea {
+    color: black!important;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 2px;
+    margin-top: 5px !important;
+  }
+
+textarea:focus{
+    outline: none;
+    border-bottom: 2px solid #26a69a !important;
+}
+
+mat-label{
+    font-size: 15px !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+}
+

@@ -1,0 +1,86 @@
+<div id="movie-table" class="table" >
+
+    <span class="table-title">Фильмы</span>
+    <div class="demo-button-container">
+        <button mat-raised-button class="demo-button" (click)="openDialog(0)">
+          Добавить фильм
+        </button>
+    </div>
+
+    <label for="movie-filter">Поиск</label>
+    <div class="wrapper-input">
+        <input id="movie-filter" [(ngModel)]="movieFilterText" type="text" placeholder="...">
+        <button (click)="movieFilterText='' " *ngIf="movieFilterText" type="reset">&times;</button>
+        <button mat-raised-button class="demo-button search-btn" (click)="applyFilter()">
+            Найти
+        </button>
+    </div>
+    
+     
+    <table mat-table [dataSource]="movies">
+
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell class="table-action-edit" *matCellDef="let element" [routerLink]="['/movie', element.id]">{{element.name}}</td>
+    </ng-container>
+
+    <!-- Country Column -->
+    <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>Country</th>
+        <td mat-cell *matCellDef="let element">{{element.country}}</td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element">{{getNameCategory(element.category)}}</td>
+    </ng-container>
+
+    <!-- CreatedAt Column -->
+    <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>CreatedAt</th>
+        <td mat-cell *matCellDef="let element">{{element.createdAt | date:'dd.MM.yyyy'}}</td>
+    </ng-container>
+
+    <!-- update Column -->
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef>Update</th>
+        <td mat-cell class="table-action-edit" *matCellDef="let element" (click)="openDialog(element.id)">
+            ред.
+            <mat-icon style="transform: scale(0.9);">edit</mat-icon>
+        </td>
+    </ng-container>
+
+    <!-- remove Column -->
+    <ng-container matColumnDef="remove">
+        <th mat-header-cell *matHeaderCellDef>Remove</th>
+        <td mat-cell class="table-action-edit" *matCellDef="let element" (click)="openConfirmationDialog(element.id, element.name, removeDataType.Movie)">
+            удалить
+            <mat-icon style="transform: scale(0.9);">cancel</mat-icon>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator 
+        [length]="moviesTotal"
+        [pageSizeOptions]="[5,10,15]"
+        (page)="movieTablePageEvent = $event; onPaginateChange($event)"
+        showFirstLastButtons 
+        >
+    </mat-paginator>
+</div>
+<app-administration-cartoon></app-administration-cartoon>
+<app-administration-actor></app-administration-actor>
+<app-administration-director></app-administration-director>
+<app-administration-genre></app-administration-genre>
+<app-administration-user></app-administration-user>

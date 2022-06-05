@@ -1,0 +1,13 @@
+.logo{
+    font-size: 40px;
+    margin-right: 30px;
+    font-family: "TT Compotes Espresso";
+}
+.logo:hover{
+    background-color: unset !important;
+}
+
+@font-face {
+    font-family: "TT Compotes Espresso";
+    src:url("/assets/fonts/tt-compotes-espresso.otf") format("truetype");
+  }

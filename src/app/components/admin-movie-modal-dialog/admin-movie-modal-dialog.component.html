@@ -1,0 +1,144 @@
+<mat-dialog-content>
+  <form [formGroup]="movieForm" (ngSubmit)="clickOnAction()" class="card">
+    <div class="card-content">
+        <span class="card-title">{{this.titleDialog}}</span>
+        <div class="input-field">
+            <input
+            formControlName="name"
+             id="name" 
+             type="text" 
+             >
+            <label for="name" *ngIf="this.movie" [ngClass]="this.movie.name !== undefined ? 'active':'validate'">Название:</label>
+            <label for="name" *ngIf="!this.movie">Название:</label>
+        </div>
+  
+        <mat-form-field>
+          <mat-label>Страна</mat-label>
+            <mat-select name="country" formControlName="country" [compareWith]="compareObjects">
+              <mat-option *ngFor="let country of countryList" [value]="country">
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Категория</mat-label>
+            <mat-select name="category" formControlName="category" [compareWith]="compareObjects">
+              <mat-option *ngFor="let category of categoryList" [value]="category">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="input-field">
+            <input 
+            formControlName="year"
+            id="year" 
+            type="number" 
+            >
+            <label for="year" *ngIf="this.movie" [ngClass]="this.movie.year ? 'active': null">Год выхода:</label>
+            <label for="year" *ngIf="!this.movie">Год выхода:</label>
+        </div>
+  
+        <div class="input-field">
+          <textarea
+          formControlName="description"
+          id="description" 
+          type="text" 
+          ></textarea>
+          <label for="description" *ngIf="this.movie" [ngClass]="this.movie.description ? 'active': null">Описание фильма:</label>
+          <label for="description" *ngIf="!this.movie">Описание фильма:</label>
+        </div>
+  
+        <div class="input-field">
+            <input
+            formControlName="movieUrl"
+             id="movieUrl" 
+             type="text" 
+             >
+            <label for="movieUrl" *ngIf="this.movie" [ngClass]="this.movie.movieUrl ? 'active': null">Относительный url фильма:</label>
+            <label for="movieUrl" *ngIf="!this.movie">Относительный url фильма:</label>
+        </div>
+  
+        <div class="input-field">
+          <input
+          formControlName="imageUrl"
+           id="imageUrl" 
+           type="text" 
+           >
+          <label for="imageUrl" *ngIf="this.movie" [ngClass]="this.movie.imageUrl ? 'active': null">Ссылка на постер фильма:</label>
+          <label for="imageUrl" *ngIf="!this.movie">Ссылка на постер фильма:</label>
+      </div> 
+      
+      <mat-form-field>
+        <mat-label>Режиссер</mat-label>
+        <div *ngIf="this.movie">
+          <mat-select name="director" formControlName="director" [compareWith]="compareObjects">
+            <mat-option *ngFor="let director of directorList" [value]="director">
+              {{director.name}} {{director.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+  
+        <div *ngIf="!this.movie">
+          <mat-select formControlName="director" name="director">
+            <mat-option *ngFor="let director of directorList" [value]="director">
+              {{director.name}} {{director.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Жанры</mat-label>
+        <div *ngIf="this.movie">
+          <mat-select name="genres" multiple formControlName="genres" [compareWith]="compareObjects">
+            <mat-option *ngFor="let genre of genreList" [value]="genre">
+              {{genre.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+      
+        <div *ngIf="!this.movie">
+          <mat-select name="genres" multiple formControlName="genres">
+            <mat-option *ngFor="let genre of genreList" [value]="genre">
+              {{genre.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Список актёров:</mat-label>
+        <div *ngIf="this.movie">
+          <mat-select name="actors" multiple formControlName="actors" [compareWith]="compareObjects">
+            <input style="padding-left: 10px;" placeholder="Поиск..." type="text" matInput (keyup)="onKey($event.target)"> 
+            <mat-option *ngFor="let actor of actorList" [value]="actor">
+              {{actor.name}} {{actor.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      
+        <div *ngIf="!this.movie">
+          <mat-select name="actors" multiple formControlName="actors">
+            <input style="padding-left: 10px;" placeholder="Поиск..." type="text" matInput (keyup)="onKey($event.target)"> 
+            <mat-option *ngFor="let actor of actorList" [value]="actor">
+              {{actor.name}} {{actor.lastName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+
+    </div>
+    <div class="card-action">
+        <button 
+        type="submit"
+        class="modal-action btn waves-effect">
+        {{this.btnActionName}}
+        </button>
+    </div>
+  </form>  
+</mat-dialog-content>
+
+
+<ng-template #create_field_template></ng-template>

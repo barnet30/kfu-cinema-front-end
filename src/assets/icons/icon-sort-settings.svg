@@ -1,0 +1,18 @@
+<svg width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g transform="rotate(90 17.5,17.49999809265137) " id="svg_7">
+   <path fill="#ffffff" id="svg_1" d="m5.42,34.44a1.25,1.25 0 0 1 -1.25,-1.25l0,-31.38a1.25,1.25 0 0 1 2.5,0l0,31.38a1.25,1.25 0 0 1 -1.25,1.25z"/>
+   <path fill="#ffffff" id="svg_2" d="m9.34,27.41l-7.84,0a1.25,1.25 0 0 1 0,-2.5l7.84,0a1.25,1.25 0 0 1 0,2.5z"/>
+   <path fill="#ffffff" id="svg_3" d="m29.58,34.44a1.25,1.25 0 0 1 -1.25,-1.25l0,-31.38a1.25,1.25 0 1 1 2.5,0l0,31.38a1.25,1.25 0 0 1 -1.25,1.25z"/>
+   <path fill="#ffffff" id="svg_4" d="m33.5,27.41l-7.84,0a1.25,1.25 0 0 1 0,-2.5l7.84,0a1.25,1.25 0 0 1 0,2.5z"/>
+   <path fill="#ffffff" id="svg_5" d="m17.5,34.44a1.25,1.25 0 0 1 -1.25,-1.25l0,-31.38a1.25,1.25 0 1 1 2.5,0l0,31.38a1.25,1.25 0 0 1 -1.25,1.25z"/>
+   <path fill="#ffffff" id="svg_6" d="m21.42,10.09l-7.84,0a1.25,1.25 0 0 1 0,-2.5l7.84,0a1.25,1.25 0 0 1 0,2.5z"/>
+  </g>
+ </g>
+</svg>

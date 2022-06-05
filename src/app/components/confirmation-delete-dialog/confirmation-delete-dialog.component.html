@@ -1,0 +1,9 @@
+<h2 mat-dialog-title style="text-align: center; font-size: 24px;">Подтвердите действие.</h2>
+<mat-dialog-content class="mat-typography" align="center">
+    Вы действительно хотите удалить елемент 
+    <span style="font-weight: 600;">{{this.name}}</span>?
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button class="button" [mat-dialog-close]="true" (click)="separateButtonAction()">Да</button>
+    <button mat-raised-button class="button" [mat-dialog-close]="true">Отмена</button>
+ </mat-dialog-actions>

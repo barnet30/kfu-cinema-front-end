@@ -1,4 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "theme/styles.min.css";
 
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.nav-wrapper {
+    background-color: rgb(52,58,64);
+}
+
+body {
+    background-color: rgb(233,235,238)
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Border */
+.mat-form-field {
+    color: #ccc;
+    padding: 3px;
+    margin-bottom: 10px;
+  }
+
+  .mat-form-field-appearance-outlin .mat-label {
+      color: black;
+  }
+  /* Font color */
+  input.mat-input-element {
+    color: black;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.sticky {
+  position: sticky;
+  z-index:99999999;        
+  top: 0;
+  width: 100%;
+}
+
+.nav-wrapper{
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+mat-card{
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  border: 1px solid #ccc !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.app-full-bleed-dialog .mat-dialog-container {
+  padding: 0;
+  padding-bottom: 0 !important;
+}
+
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #26a69a !important;
+}
+
+.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #26a69a !important;;
+}
+
+.mat-select:focus .mat-select-trigger .mat-select-arrow {
+  color: #26a69a !important;
+}
+
+.mat-selected {
+  color: #26a69a !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: unset;
+}
+
+.mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background-color: #26a69a;
+}
+
+.app-full-bleed-dialog .mat-dialog-content {
+  padding: 0 !important;
+  max-width: 100%;
+  margin: 0 !important;
+}
+
+.table{
+  margin-top: 50px;
+  max-width: 70%;
+  margin-left: 15%;
+  padding-bottom: 36px;
+}

@@ -1,0 +1,73 @@
+.demo-button-container {
+    margin-top: 8px;
+    padding-bottom: 16px;
+  }
+  
+  .demo-button + .demo-button {
+    margin-left: 8px;
+  }
+
+  .table-title{
+      font-size: 24px;
+  }
+
+  .table-action-edit:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color: black;
+  }
+
+  .app-full-bleed-dialog .mat-dialog-container {
+    padding: 0;
+  }
+
+.wrapper-input{
+  position: relative;
+  width: 50%;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 10px;
+  align-items: center;
+  padding: 12px;
+  height: 48px;
+
+  &:focus-within{
+    border-color: #26a69a;
+  }
+
+  input[type="text"]{
+    height: 18px;
+    border: none;
+    margin: unset;
+
+    &:focus{
+      border: none;
+      box-shadow: none; 
+    }
+  }
+}
+
+button[type="reset"] {
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0;
+  top: 2px;
+  right: 12px;
+  border: none;
+  background-color: white;//rgb(233,235,238);
+  font-size: 30px;
+
+  &:hover{
+    cursor: pointer;
+  }
+}
+  
+.search-btn{
+  position: absolute;
+  margin-left: 24px;
+  margin-bottom: auto;
+  top: -1px;
+  height: 46px;
+}

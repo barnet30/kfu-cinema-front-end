@@ -1,0 +1,78 @@
+<mat-dialog-content>
+    <form [formGroup]="directorForm" (ngSubmit)="clickOnAction()" class="card">
+        <div class="card-content">
+            <span class="card-title">{{this.titleDialog}}</span>
+            <div class="input-field">
+                <input
+                formControlName="name"
+                id="name" 
+                type="text" 
+                >
+                <label for="name" *ngIf="this.director" [ngClass]="this.director.name !== undefined ? 'active':'validate'">Имя:</label>
+                <label for="name" *ngIf="!this.director">Имя:</label>
+            </div>
+
+            <div class="input-field">
+            <input
+            formControlName="lastName"
+                id="lastName" 
+                type="text" 
+                >
+            <label for="lastName" *ngIf="this.director" [ngClass]="this.director.name !== undefined ? 'active':'validate'">Фамилия:</label>
+            <label for="lastName" *ngIf="!this.director">Фамилия:</label>
+        </div>
+
+        <div class="input-field">
+            <input
+            formControlName="imageUrl"
+                id="imageUrl" 
+                type="text" 
+                >
+            <label for="imageUrl" *ngIf="this.director" [ngClass]="this.director.imageUrl ? 'active': null">Ссылка на фото:</label>
+            <label for="imageUrl" *ngIf="!this.director">Ссылка на фото:</label>
+        </div> 
+
+        <mat-form-field>
+            <mat-label>Место рождения</mat-label>
+            <div *ngIf="this.director">
+                <mat-select name="country" formControlName="country" [compareWith]="compareObjects">
+                <mat-option *ngFor="let country of countryList" [value]="country">
+                    {{country.name}}
+                </mat-option>
+                </mat-select>
+            </div>
+
+            <div *ngIf="!this.director">
+                <mat-select formControlName="country" name="country">
+                <mat-option *ngFor="let country of countryList" [value]="country">
+                    {{country.name}}
+                </mat-option>
+                </mat-select>
+            </div>
+        </mat-form-field>
+
+        <div class="input-field">
+            <input id="birthDate" type="date" formControlName="birthDate">
+            <label for="birthDate">Дата рождения:</label>
+        </div>
+
+        <div class="input-field">
+            <textarea
+            formControlName="description"
+            id="description" 
+            type="text" 
+            ></textarea>
+            <label for="description" *ngIf="this.director" [ngClass]="this.director.description ? 'active': null">О режиссёре:</label>
+            <label for="description" *ngIf="!this.director">Об режиссёре:</label>
+        </div>
+
+        </div>
+      <div class="card-action">
+          <button 
+          type="submit"
+          class="modal-action btn waves-effect">
+          {{this.btnActionName}}
+          </button>
+      </div>
+    </form>  
+  </mat-dialog-content>  

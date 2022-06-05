@@ -1,0 +1,8 @@
+<h2 mat-dialog-title style="text-align: center; font-size: 24px;">Вы не авторизованны.</h2>
+<mat-dialog-content class="mat-typography">
+  Чтобы поставить оценку авторизуйтесь или зарегистрируйтесь, если у вас нет аккаунта.
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button class="button" [mat-dialog-close]="true" routerLink="login">Войти</button>
+    <button mat-raised-button class="button" [mat-dialog-close]="true" routerLink="register">Регистрация</button>
+ </mat-dialog-actions>
