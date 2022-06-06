@@ -96,7 +96,7 @@ export class HomeCartoonComponent implements OnInit {
     this.movieFilter.name = this.filterForm.value.name;
     this.movieFilter.genres = this.filterForm.value.genres;
 
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
       this.total = res['total'];
       this.totalPages = Math.trunc(this.total / this.pageSize) + 1;
@@ -132,7 +132,7 @@ export class HomeCartoonComponent implements OnInit {
 
     this.activePage = page;
     this.movieFilter.offset = this.activePage - 1;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
       window.scroll({ 
         top: 0, 
@@ -151,7 +151,7 @@ export class HomeCartoonComponent implements OnInit {
     }
 
     this.movieFilter.offset = this.activePage - 1;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
     });
   }
@@ -165,7 +165,7 @@ export class HomeCartoonComponent implements OnInit {
     }
 
     this.movieFilter.offset = this.activePage - 1;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
     });
   }
@@ -179,7 +179,7 @@ export class HomeCartoonComponent implements OnInit {
     }
 
     this.movieFilter.offset = this.activePage - 1;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
     });
   }
@@ -193,7 +193,7 @@ export class HomeCartoonComponent implements OnInit {
     }
 
     this.movieFilter.offset = this.activePage - 1;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
     });
   }
@@ -202,7 +202,7 @@ export class HomeCartoonComponent implements OnInit {
     this.movieFilter.limit = this.pageSize;
     this.activePage = 1;
     this.movieFilter.offset = this.activePage - 1;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
       this.totalPages = Math.trunc(this.total / this.pageSize) + 1;
 
@@ -223,7 +223,7 @@ export class HomeCartoonComponent implements OnInit {
     }
 
     this.movieFilter.sortColumn = sortColumnName;
-    this.movieService.getMovies(this.movieFilter).subscribe(res => {
+    this.movieService.getCartoons(this.movieFilter).subscribe(res => {
       this.movies = res['items'];
     });
   }

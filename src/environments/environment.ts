@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  cinemaApi: 'https://kinomir116.herokuapp.com/',
+  cinemaApi: 'http://localhost:44351/',
   allowedDomains: ['localhost:44351']
 };
 
