@@ -162,7 +162,7 @@ updateMovie(){
   let directorId = this.movieForm.value.director ? Number(this.movieForm.value.director.id) : null;
   let actors = this.movieForm.value.actors.map((x: { id: number; })=>x.id);
   let genres = this.movieForm.value.genres.map((x: { id: number; })=>x.id);
-  let category = this.movieForm.value.category.id != null || this.movieForm.value.category.id != undefined ? 
+  let category = this.movieForm.value.category.id != null && this.movieForm.value.category.id != undefined ? 
         Number(this.movieForm.value.category.id) : null;
 
   let movieUpdate = new MovieUpdate(this.id,name,countryId,country,year,
@@ -184,7 +184,8 @@ createMovie(){
   let directorId = this.movieForm.value.director ? Number(this.movieForm.value.director.id) : null;
   let actors = this.movieForm.value.actors.map(x=>x.id);
   let genres = this.movieForm.value.genres.map(x=>x.id);
-  let category = this.movieForm.value.category.id ? Number(this.movieForm.value.category.id) : null;
+  let category = this.movieForm.value.category.id != null && this.movieForm.value.category.id != undefined ? 
+  Number(this.movieForm.value.category.id) : null;
 
   let movieCreate = new MovieCreate(name,countryId,country,year,description,movieUrl,imageUrl, directorId, category, actors,genres);
   this.movieService.createMovie(movieCreate).subscribe(res=>{
